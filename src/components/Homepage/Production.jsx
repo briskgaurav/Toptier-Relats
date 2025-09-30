@@ -32,6 +32,7 @@ export default function Production() {
 
     tl.to(el, {
       width: "130%",
+      borderRadius: "0vw",
       height: "130%",
     });
     tl.to(
@@ -69,8 +70,8 @@ export default function Production() {
       <div className="h-screen overflow-hidden w-full flex items-center justify-center sticky top-0">
         <div
           ref={imageContainerRef}
-          className="z-[1] flex items-center relative justify-center"
-          style={{ width: "25%", height: "40%" }}
+          className="z-[1] flex  items-center overflow-hidden relative justify-center"
+          style={{ width: "25%", height: "40%" , borderRadius: "1.5vw"}}
         >
           <Image
             className="h-full w-full object-cover"

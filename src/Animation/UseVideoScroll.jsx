@@ -11,10 +11,9 @@ export default function useVideoScroll({ video, container, triggerValues = {} })
       duration = video.duration || 1;
       gsap.to(video, {
         currentTime: duration,
-        ease: "none",
-        scrollTrigger: { 
+        scrollTrigger: {
           trigger: container,
-          start: triggerValues.start || "top 50%",
+          start: triggerValues.start || "top 60%",
           end: triggerValues.end || "90% bottom",
           scrub: true,
           markers: false,
