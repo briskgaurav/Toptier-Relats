@@ -1,0 +1,41 @@
+@import "tailwindcss";
+
+:root {
+  --background: #eae4df;
+  --foreground: #171717;
+
+  --faRegular: var(--font-faRegular);
+  --DMMono: var(--font-DMMono);
+  --Robert: var(--font-Robert);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-robert: var(--font-Robert);
+  --font-fa: var(--font-faRegular);
+  --font-DMMono: var(--font-DMMono);
+  --color-blackshade: #0a0a0a;
+  --color-orange: #FF5710;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #eae4df;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--faRegular);
+}
+/* Tailwind CSS: Use as className="heading" in your JSX */
+.heading {
+  @apply text-[12vw] tracking-tighter leading-none font-medium font-robert;
+}
+
+.content {
+  @apply text-[2.4vw] leading-[1.1] font-medium font-robert tracking-tighter;
+}
