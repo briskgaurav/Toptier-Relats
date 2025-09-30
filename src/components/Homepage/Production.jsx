@@ -47,12 +47,12 @@ export default function Production() {
       obj,
       {
         value: 500,
-        duration: 1,
+        duration: .6,
         onUpdate: () => {
           setCounter(Math.round(obj.value));
         },
       },
-      "<"
+      "<+.2"
     );
  
 

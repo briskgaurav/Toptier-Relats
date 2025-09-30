@@ -1,9 +1,52 @@
-import Image from "next/image";
-import React from "react";
+"use client";
+import React, { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { splitTextByChars } from "@/Animation/GsapAnimation";
+gsap.registerPlugin(ScrollTrigger);
+
 
 export default function Hero() {
+  const headingRef = useRef(null);
+  const containerRef = useRef(null);
+
+  useEffect(() => {
+    if (!headingRef.current || !containerRef.current) return;
+
+    const charSpans = splitTextByChars(headingRef.current);
+    gsap.set(charSpans.chars, { opacity: 1 });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: "10% top",
+        end: "80% top",
+        scrub: true,
+        markers: false,
+      },
+    });
+    tl.to(
+      charSpans.chars,
+      {
+        opacity: 0,
+        stagger: 0.06,
+        ease: "none",
+        duration: 0.5,
+      },
+      
+    );
+
+    return () => {
+      if (tl.scrollTrigger) tl.scrollTrigger.kill();
+      tl.kill();
+    };
+  }, []);
+
   return (
-    <section id="hero" className="h-screen w-full relative">
+    <section
+      id="hero"
+      ref={containerRef}
+      className="h-screen w-full relative"
+    >
       <video
         autoPlay
         muted
@@ -13,10 +56,12 @@ export default function Hero() {
         src="assets/videos/hero/hero.mp4"
       />
       <div className="h-full w-full text-white relative z-[2] flex items-center flex-col justify-end  pb-[10vw]">
-        <h1 className=" text-center tracking-tighter text-[5.8vw] w-[70%] leading-[1.1]  font-medium font-robert">
+        <h1
+          ref={headingRef}
+          className="text-center tracking-tighter text-[5.8vw] w-[70%] leading-[1.1] font-medium font-robert"
+        >
           Protection sleeves for the mobility of tomorrow
         </h1>
-    
       </div>
     </section>
   );

@@ -6,6 +6,8 @@ import Flamability from '@/components/Homepage/Flamability'
 import CableTypes from '@/components/Homepage/CableTypes'
 import Production from '@/components/Homepage/Production'
 import Periflex from '@/components/Homepage/Periflex'
+import WorldWide from '@/components/Homepage/WorldWide'
+import Footer from '@/components/Footer/Footer'
 
 export default function page() {
   return (
@@ -16,6 +18,8 @@ export default function page() {
       <Flamability />
       <Production />
       <Periflex />
+      <WorldWide />
+      <Footer />
    
     </>
   )

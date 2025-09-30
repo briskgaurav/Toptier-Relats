@@ -35,7 +35,13 @@ body {
 .heading {
   @apply text-[12vw] tracking-tighter leading-none font-medium font-robert;
 }
+.heading2 {
+  @apply text-[5.5vw] tracking-tighter leading-[1.2] font-medium font-robert;
+}
 
 .content {
   @apply text-[2.4vw] leading-[1.1] font-medium font-robert tracking-tighter;
+}
+.content2 {
+  @apply text-[1.75vw] leading-[1.25] font-medium font-robert tracking-tighter;
 }

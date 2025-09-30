@@ -149,7 +149,7 @@ export default function Flamability() {
         <video
           className="w-full h-full object-cover absolute inset-0 z-[1]"
           ref={videoRef}
-          src="https://toptier.relats.com/wp-content/themes/relats/videos/revitex/busbar.mp4"
+          src="/assets/videos/revitex/busbar.mp4"
           muted
           playsInline
         />

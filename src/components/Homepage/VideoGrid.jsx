@@ -25,10 +25,12 @@ export default function VideoGrid() {
             gap: '10px',
         }, "<")
         tl.to('.rounded-div', {
-           borderRadius: '10px',
+           borderRadius: '2%',
         }, "<")
 
     }, [])
+
+    
     return (
         <section id='video-grid' ref={videoGridRef} className='w-full bg-blackshade h-[130vh] scale-100 overflow-hidden relative'>
             <div className='grid grid-wrapper grid-rows-3 translate-y-[-18%] scale-210 gap-containers gap-[1px]'>
