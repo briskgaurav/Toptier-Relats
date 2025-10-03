@@ -15,7 +15,7 @@ import SelfClosing from '@/components/Homepage/SelfClosing'
 export default function page() {
   return (
     <>
-      <Loader />
+      {/* <Loader /> */}
       <Header />
       <Hero />
       <VideoGrid />

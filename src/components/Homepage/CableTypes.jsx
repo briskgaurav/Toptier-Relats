@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import React, { useState } from "react";
+import React from "react";
 import Cards from "./Cards";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -14,16 +14,16 @@ const cardData = [
   {
     key: "card-0",
     cardProps: {
-      positionClassName: "left-[40%] top-[35%] -translate-x-1/2 -translate-y-1/2 absolute",
     },
+    positionClassName: "left-[40%] w-full top-[35%] -translate-x-1/2 -translate-y-1/2 absolute",
   },
   {
     key: "card-1",
     cardProps: {
       contentClassName: "text-[1.3vw] w-full",
       content: "FMVSS 302 Self-extinguishing UL94 V1 (Ø 18 mm)",
-      positionClassName: "left-[75%] top-[45%] -translate-x-1/2 -translate-y-1/2 absolute",
     },
+    positionClassName: "left-[75%] w-full top-[45%] -translate-x-1/2 -translate-y-1/2 absolute",
   },
   {
     key: "card-2",
@@ -31,8 +31,8 @@ const cardData = [
       contentClassName: "text-[1.3vw] w-full",
       heading: "Thermal Runway",
       content: "+1000ºC x 5 mins ≥ 5kV (TE) +1000ºC x 15 mins ≥ 2kV (DFT) +850ºC x 30 mins ≥ 2kV (DFT)",
-      positionClassName: "left-[55%] top-[80%] -translate-x-1/2 -translate-y-1/2 absolute",
     },
+    positionClassName: "left-[55%] w-full top-[80%] -translate-x-1/2 -translate-y-1/2 absolute",
   },
 ];
 
@@ -42,28 +42,33 @@ const imageVariants = {
   exit: { opacity: 0, transition: { duration: 0.35, ease: "linear" } },
 };
 
+// Animate cards from a little y offset
 const cardVariants = {
-  initial: { opacity: 0 },
+  initial: { opacity: 0, y: 30 },
   animate: (i) => ({
     opacity: 1,
+    y: 0,
     transition: {
-      opacity: { delay: 0.1 + i * 0.07, duration: 0.5, ease: "linear" },
+      opacity: { delay: 0.15 + i * 0.12, duration: 0.5, ease: "linear" },
+      y: { delay: 0.15 + i * 0.12, duration: 0.5, ease: "easeOut" },
     },
   }),
   exit: (i) => ({
     opacity: 0,
+    y: 30,
     transition: {
-      opacity: { delay: i * 0.07, duration: 0.35, ease: "linear" },
+      opacity: { delay: i * 0.12, duration: 0.35, ease: "linear" },
+      y: { delay: i * 0.12, duration: 0.35, ease: "easeIn" },
     },
   }),
 };
 
-export default function CableTypes({ type, setType }) {
- 
+export default function CableTypes({ type, setType, handleScrollToCable }) {
 
-  const handleTypeChange = (newType) => {
+  const handleTypeClick = (newType) => {
     if (newType === type) return;
     setType(newType);
+    handleScrollToCable && handleScrollToCable(newType);
   };
 
   return (
@@ -71,7 +76,6 @@ export default function CableTypes({ type, setType }) {
       id="cable-types"
       className="w-full cable-types absolute inset-0 z-[5] h-screen"
     >
-      {/* Smooth image transition */}
       <div className="absolute inset-0 w-full h-full z-0">
         <AnimatePresence mode="wait">
           <motion.div
@@ -104,18 +108,18 @@ export default function CableTypes({ type, setType }) {
           <div>
             <p
               className={`text-[3.5vw] cursor-pointer leading-[1.2] tracking-tighter text-white font-medium font-robert ${type !== "revitex-wsx45" ? "opacity-50" : ""}`}
-              onClick={() => handleTypeChange("revitex-wsx45")}
+              onClick={() => handleTypeClick("revitex-wsx45")}
             >
               Revitex WSX45
             </p>
             <p
-              onClick={() => handleTypeChange("revitex-vsc25")}
+              onClick={() => handleTypeClick("revitex-vsc25")}
               className={`text-[3.5vw] cursor-pointer leading-[1.2] tracking-tighter font-medium font-robert ${type !== "revitex-vsc25" ? "opacity-50" : ""}`}
             >
               Revitex VSC25
             </p>
             <p
-              onClick={() => handleTypeChange("revitex-vsctf")}
+              onClick={() => handleTypeClick("revitex-vsctf")}
               className={`text-[3.5vw] cursor-pointer leading-[1.2] tracking-tighter font-medium font-robert ${type !== "revitex-vsctf" ? "opacity-50" : ""}`}
             >
               Revitex VSCTF
@@ -129,11 +133,10 @@ export default function CableTypes({ type, setType }) {
           </div>
         </div>
         <div className="w-full relative h-full">
-          {/* Card wrappers with framer-motion fadeup animation */}
           <AnimatePresence mode="wait">
             {cardData.map((card, i) => (
               <motion.div
-                className="card-wrapper"
+                className={`card-wrapper ${card.positionClassName || ""}`}
                 key={card.key + type}
                 custom={i}
                 variants={cardVariants}
