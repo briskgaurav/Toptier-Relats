@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { splitTextByChars } from "@/Animation/GsapAnimation";
+import MorePerflix from "../Floating/MorePerflix";
 gsap.registerPlugin(ScrollTrigger);
 
 
@@ -47,6 +48,7 @@ export default function Hero() {
       ref={containerRef}
       className="h-screen w-full relative"
     >
+      
       <video
         autoPlay
         muted
@@ -58,9 +60,9 @@ export default function Hero() {
       <div className="h-full w-full text-white relative z-[2] flex items-center flex-col justify-end  pb-[10vw]">
         <h1
           ref={headingRef}
-          className="text-center tracking-tighter text-[5.8vw] w-[70%] leading-[1.1] font-medium font-robert"
+          className="text-center tracking-tighter text-[5.8vw] w-[90%] leading-[1.1] font-medium font-robert"
         >
-          Protection sleeves for the mobility of tomorrow
+          Protection sleeves for the mobility <br /> of tomorrow
         </h1>
       </div>
     </section>

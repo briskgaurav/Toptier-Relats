@@ -2,30 +2,38 @@
 import React, { useEffect, useRef, useState } from 'react'
 import gsap from 'gsap'
 
-/**
- * Helper to get all video elements on the page.
- */
 function getAllVideos() {
   return Array.from(document.querySelectorAll('video'));
 }
 
-/**
- * Returns a promise that resolves when the given video is loaded enough to play.
- */
-function waitForVideoLoaded(video) {
+function waitForVideoLoaded(video, timeout = 4000) {
   return new Promise((resolve) => {
+    let resolved = false;
     // If already loaded
     if (video.readyState >= 3) {
       resolve();
       return;
     }
     const onLoaded = () => {
-      resolve();
-      video.removeEventListener('canplaythrough', onLoaded);
-      video.removeEventListener('loadeddata', onLoaded);
+      if (!resolved) {
+        resolved = true;
+        resolve();
+        video.removeEventListener('canplaythrough', onLoaded);
+        video.removeEventListener('loadeddata', onLoaded);
+      }
     };
     video.addEventListener('canplaythrough', onLoaded);
     video.addEventListener('loadeddata', onLoaded);
+
+    // Timeout fallback
+    const timer = setTimeout(() => {
+      if (!resolved) {
+        resolved = true;
+        resolve();
+        video.removeEventListener('canplaythrough', onLoaded);
+        video.removeEventListener('loadeddata', onLoaded);
+      }
+    }, timeout);
   });
 }
 
@@ -59,14 +67,17 @@ export default function Loader() {
 
       let loadedCount = 0;
 
-      // Progressively update as each video loads
+      // Progressively update as each video loads, but also ensure progress never gets stuck
       await Promise.all(
         videos.map((video) =>
-          waitForVideoLoaded(video).then(() => {
+          waitForVideoLoaded(video, 4000).then(() => {
             loadedCount += 1;
-            // Animate progress to the new value
+            // Animate progress to the new value, but never let it get stuck below 100
+            let nextProgress = (loadedCount / total) * 100;
+            // If this is the last video, force 100
+            if (loadedCount === total) nextProgress = 100;
             gsap.to(progressRef.current, {
-              current: (loadedCount / total) * 100,
+              current: nextProgress,
               duration: 0.5,
               ease: 'power1.out',
               onUpdate: () => {

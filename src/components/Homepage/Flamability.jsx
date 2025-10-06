@@ -279,6 +279,8 @@ export default function Flamability() {
 
   return (
     <section
+    data-more-perflix-toggle
+    data-toggleon
       id="flamability"
       ref={containerRef}
       className="w-full relative h-[1500vh]"
@@ -299,7 +301,7 @@ export default function Flamability() {
             1,000°C
           </p>
           <p className="text-white text-[12vw] absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flamabilityText text-center w-full tracking-tighter leading-none font-medium font-robert">
-            FLAMABILITY
+            Flammability
           </p>
           <div className="w-full absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 flex items-center flex-col gap-[1vw]">
             <p className="text-white text-[12vw] w-[52%] tracking-tighter leading-none font-medium font-robert insulationText">

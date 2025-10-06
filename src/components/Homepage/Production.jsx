@@ -34,12 +34,11 @@ export default function Production() {
       width: "130%",
       borderRadius: "0vw",
       height: "130%",
-    });
+    },"<");
     tl.to(
       ".text-production",
       {
         y: "0%",
-        ease: "power2.inOut",
       },
       "<"
     );
@@ -52,7 +51,7 @@ export default function Production() {
           setCounter(Math.round(obj.value));
         },
       },
-      "<+.2"
+      "<+.3"
     );
  
 
@@ -65,7 +64,7 @@ export default function Production() {
   return (
     <section
       id="production"
-      className="h-[500vh]  bg-background relative w-screen"
+      className="h-[700vh]  bg-background relative w-screen"
     >
       <div className="h-screen overflow-hidden w-full flex items-center justify-center sticky top-0">
         <div

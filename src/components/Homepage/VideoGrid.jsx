@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 import { splitTextByChars } from '@/Animation/GsapAnimation'
+import MorePerflix from '../Floating/MorePerflix'
 gsap.registerPlugin(ScrollTrigger)
 
 export default function VideoGrid() {
@@ -20,7 +21,7 @@ export default function VideoGrid() {
             }
         })
         tl.to('.grid-wrapper', {
-            scale: 1.1,
+            scale: 1.5,
         })
         tl.to('.gap-containers', {
             gap: '10px',
@@ -105,6 +106,7 @@ export default function VideoGrid() {
 
     return (
         <section id='video-grid' ref={videoGridRef} className='w-full bg-blackshade h-[130vh] scale-100 overflow-hidden relative'>
+           
             <div className='grid grid-wrapper grid-rows-3 translate-y-[-18%] scale-210 gap-containers gap-[1px]'>
                 {/* First row: 2 columns, blue and red */}
                 <div className='h-[50vh] gap-containers gap-[1px] w-screen grid grid-cols-2'>
@@ -187,8 +189,8 @@ export default function VideoGrid() {
                 </div>
             </div>
             <p className='text-white text-[3vw] video-grid-text leading-[1.1] font-medium font-robert text-center w-[40%] absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2'>Your 360° partner for safety in electromobility</p>
-            <p className='text-white text-[3vw] video-grid-text2 leading-[1.1] font-medium font-robert text-center w-[40%] absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2'>We cover all sustainable
-            mobility solutions</p>
+            <p className='text-white text-[3vw] video-grid-text2 leading-[1.1] font-medium font-robert text-center w-[50%] absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2'>We cover all sustainable
+            mobility <br /> solutions</p>
         </section>
     )
 }

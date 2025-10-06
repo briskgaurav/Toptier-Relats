@@ -9,6 +9,7 @@ export default function Header() {
   const [isHovered, setIsHovered] = useState(false)
   const spanRef = useRef(null)
 
+
   const handleMouseEnter = () => {
     setIsHovered(true)
     gsap.to(spanRef.current, {
@@ -29,7 +30,7 @@ export default function Header() {
 
   return (
     <>
-    <nav className='px-[.5vw] fixed z-[50] rounded-[1.3vw] h-[7vh] py-[.3vw] left-1/2 bg-white/20 backdrop-blur-[10px]  translate-x-[-50%] flex items-center gap-[3vw] top-[1vw]'>
+    <nav className='px-[.5vw] fixed z-[50] navbarRef rounded-[1.3vw] h-[7vh] py-[.3vw] left-1/2 bg-white/20 backdrop-blur-[10px]  translate-x-[-50%] flex items-center gap-[3vw] top-[1vw]'>
       <div className='w-[8vw] pl-[1vw] py-[1vw] h-fit'>
         <LogoSVG />
       </div>
