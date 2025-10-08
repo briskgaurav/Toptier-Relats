@@ -141,7 +141,7 @@ export default function IndustriesAnimation({ activeIndustry, setActiveIndustry,
                 },
 
 
-            }, "<+.8");
+            }, "<");
         });
 
 

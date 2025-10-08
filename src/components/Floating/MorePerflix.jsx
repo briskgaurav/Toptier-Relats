@@ -517,12 +517,17 @@ export default function MorePerflix() {
     setDialogOpen(false)
   }
 
+  // Hide on mobile and tablet: use max-lg:hidden (Tailwind) to hide on <= 1024px
+  // If you want to hide on max-width 1024px and below, use max-lg:hidden
+  // If you want to hide on max-width 768px and below, use max-md:hidden
+  // We'll use max-lg:hidden for both mobile and tablet
+
   return (
     <>
       <div
         ref={containerRef}
         style={{ display: 'none' }}
-        className="group fixed z-[50] max-md:hidden origin-center bottom-[2.5vw] left-1/2 -translate-x-1/2"
+        className="group fixed z-[50] max-lg:hidden origin-center bottom-[2.5vw] left-1/2 -translate-x-1/2"
       >
         <div
           className="flex items-center bg-white/20 group-hover:bg-white/30 transition-all duration-500 cursor-pointer backdrop-blur-[10px] p-[.2vw] gap-[1vw] rounded-[1.2vw]"

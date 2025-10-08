@@ -27,7 +27,7 @@ export default function Commitment() {
       </div>
       <div
         className="
-          w-[42%] bg-white max-md:justify-between p-[3.5vw] flex flex-col items-start justify-between h-full rounded-[1.5vw]
+          w-[42%] bg-white max-md:justify-evenly p-[3.5vw] flex flex-col items-start justify-between h-full rounded-[1.5vw]
           max-md:w-full max-md:rounded-[4vw] max-md:p-[4vw] max-md:py-[10vw] max-md:h-full
         "
       >
@@ -41,7 +41,7 @@ export default function Commitment() {
             COMING SOON
           </p>
         </div>
-        <div className="space-y-[3vw] max-sm:space-y-[8vw] max-md:space-y-[5vw] mt-[2vw] max-md:mt-[4vw]">
+        <div className="space-y-[3vw] max-sm:space-y-[5vw] max-md:space-y-[4vw] mt-[2vw] max-md:mt-[4vw]">
           <h2 className="text-[3.5vw] max-sm:text-[8vw] leading-[1.1]  tracking-tighter font-medium font-robert text-blackshade max-md:text-[5vw]">
             Sustainability
             <br className="" />

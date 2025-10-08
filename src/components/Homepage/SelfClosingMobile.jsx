@@ -128,14 +128,14 @@ export default function SelfClosingMobile() {
                 <div className="w-full h-[90%]">
                     <Swiper
                         spaceBetween={10}
-                        slidesPerView={1}
-                        className="h-full"
-                        centeredSlides={true}
+                        slidesPerView={1.1}
+                        className="h-full w-full"
+                       centeredSlides={true}
                         pagination={{ clickable: false }}
                     >
                         {INDUSTRIES.map((industry, idx) => (
                             <SwiperSlide key={industry.key}>
-                                <div className="flex flex-col items-center justify-center w-[90%] ml-[5vw] h-full relative max-sm:rounded-xl max-md:rounded-[3vw] overflow-hidden ">
+                                <div className="flex flex-col items-center justify-center w-full h-full relative max-sm:rounded-xl max-md:rounded-[3vw] overflow-hidden ">
                                     <div className="w-full flex h-full justify-center">
                                         <video
                                             src={industry.video}
@@ -169,7 +169,7 @@ export default function SelfClosingMobile() {
                                         <p className="text-[5vw]  text-white">Construction machines</p>
 
                                     </div>
-                                    <div className="absolute z-[5] bottom-[10vw] left-1/2 -translate-x-1/2 rounded-xl px-6 py-3 w-[90%]  bg-white/20 backdrop-blur-[10px] border border-white/20 space-y-[2vw] text-white">
+                                    <div className="absolute z-[5] bottom-[5vw] left-1/2 -translate-x-1/2 rounded-xl px-6 py-3 w-[90%]  bg-white/20 backdrop-blur-[10px] border border-white/20 space-y-[2vw] text-white">
                                         <h3 className="text-[10vw] w-full uppercase font-medium ">
                                             {industry.data.name}
                                         </h3>

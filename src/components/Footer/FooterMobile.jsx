@@ -56,7 +56,7 @@ export default function FooterMobile() {
       <section
         ref={containerRef}
         id="footer"
-        className="h-screen  max-md:block hidden relative w-full  "
+        className="h-screen  max-md:block hidden overflow-x-hidden relative w-full  "
       >
         <div className="h-screen bg-[#1D1D1D] overflow-hidden w-full sticky top-0">
           <video

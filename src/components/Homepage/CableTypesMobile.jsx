@@ -75,7 +75,7 @@ export default function CableTypesMobile({ type, setType, handleScrollToCable })
   return (
     <section
       id="cable-typesMobile"
-      className="w-full hidden max-md:block relative inset-0 z-[5] h-screen"
+      className="w-full hidden max-md:block relative inset-0 z-[5] h-screen overflow-x-hidden"
     >
       <div className="absolute inset-0 w-full h-full z-0">
         <AnimatePresence mode="wait">

@@ -30,30 +30,33 @@ export default function Production() {
       },
     });
 
-    tl.to(el, {
-      width: "130%",
-      borderRadius: "0vw",
-      height: "130%",
-    },"<");
+    tl.to(
+      el,
+      {
+        width: "130%",
+        borderRadius: "0vw",
+        height: "130%",
+      },
+      "<"
+    );
     tl.to(
       ".text-production",
       {
         y: "0%",
       },
-      "<"
     );
+   
     tl.to(
       obj,
       {
         value: 500,
-        duration: .6,
-        onUpdate: () => {
+        duration: 0.4,
+        ease:'none',
+        onComplete: () => {
           setCounter(Math.round(obj.value));
         },
       },
-      "<+.3"
     );
- 
 
     return () => {
       if (tl.scrollTrigger) tl.scrollTrigger.kill();
@@ -64,7 +67,7 @@ export default function Production() {
   return (
     <section
       id="production"
-      className="h-[700vh] max-md:hidden bg-background relative w-screen overflow-x-hidden"
+      className="h-[700vh] max-md:hidden bg-background relative w-screen "
     >
       <div className="h-screen overflow-hidden w-full flex items-center justify-center sticky top-0">
         <div
@@ -81,7 +84,7 @@ export default function Production() {
           />
         </div>
         <div className=" w-full h-full absolute top-0 left-0 z-[2] flex items-center justify-center">
-          <div className="text-center text-production translate-y-[180%]">
+          <div className="text-center text-production translate-y-[220%]">
             <p className="content">Relats produces</p>
             <h2 className="heading">
               1{digits[0]}

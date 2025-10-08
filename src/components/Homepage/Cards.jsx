@@ -31,12 +31,13 @@ export default function Cards({
     >
       <div className={`flex items-center justify-between gap-[1vw] max-sm:gap-[2vw] ${wrapperClassName}`}>
         <p className={`w-1/2 leading-none text-[1vw] max-sm:text-[3vw] max-sm:w-2/3 ${headingClassName}`}>{heading}</p>
-        <div className={`w-[2vw] max-md:w-[4vw]  max-sm:w-[6vw] h-auto ${imageClassName}`}>
+        <div className={`w-[2vw] text-white max-md:w-[4vw]  max-sm:w-[6vw] h-auto ${imageClassName}`}>
           <Image
             src={imageSrc}
             alt={imageAlt}
             width={imageWidth}
             height={imageHeight}
+            className='text-white'
             style={{ width: '100%', height: 'auto' }}
           />
         </div>

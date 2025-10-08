@@ -212,11 +212,11 @@ export default function SelfClosing() {
       });
     }
 
-    // Translate translationOverallContainer from -10% to -60% based on idx (0 to 4)
+    // Translate translationOverallContainer from -50% to 0% based on idx (0 to 4) -- TOP to BOTTOM
     if (translationOverallRef.current) {
       gsap.killTweensOf(translationOverallRef.current);
-      const minY = -10;
-      const maxY = -60;
+      const minY = -50;    // Start at top (-50%)
+      const maxY = 0;      // End at bottom (0%)
       const totalSteps = INDUSTRIES.length - 1;
       const y = minY + ((maxY - minY) * idx) / totalSteps;
       gsap.to(translationOverallRef.current, {
@@ -279,14 +279,14 @@ export default function SelfClosing() {
         yPercent: idx >= 0 ? -20 * idx : 0,
       });
     }
-    // Set initial translateY for translationOverallContainer
+    // Set initial translateY for translationOverallContainer (TOP to BOTTOM)
     if (translationOverallRef.current) {
       gsap.killTweensOf(translationOverallRef.current);
       const idx = INDUSTRIES.findIndex(
         (ind) => ind.key === activeIndustry
       );
-      const minY = -10;
-      const maxY = -60;
+      const minY = -50;
+      const maxY = 0;
       const totalSteps = INDUSTRIES.length - 1;
       const y = idx >= 0 ? minY + ((maxY - minY) * idx) / totalSteps : minY;
       gsap.set(translationOverallRef.current, {
@@ -401,9 +401,9 @@ export default function SelfClosing() {
       },
     ];
 
-    // Set initial value to -10% (fix: not -60%)
+    // Set initial value to -50% (TOP) for translationOverallContainer
     if (translationOverallRef.current) {
-      gsap.set(translationOverallRef.current, { yPercent: -10 });
+      gsap.set(translationOverallRef.current, { yPercent: -50 });
     }
 
     // For industry card triggers

@@ -285,7 +285,7 @@ export default function Flamability() {
     data-toggleon
       id="flamability"
       ref={containerRef}
-      className="w-full max-md:hidden relative h-[1500vh]"
+      className="w-full max-md:hidden relative h-[1200vh]"
     >
       <div className="w-full h-screen sticky top-0 ">
         <video

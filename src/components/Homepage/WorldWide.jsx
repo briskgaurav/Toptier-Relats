@@ -1,34 +1,112 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { SplitText } from "gsap/dist/SplitText";
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
 const stats = [
-    {
-      label: "Presence in",
-      value: "4",
-      sublabel: "continents",
-    },
-    {
-      label: "Clients in",
-      value: "55",
-      sublabel: "countries",
-    },
-    {
-      label: "Manufacturing in",
-      value: "5 production",
-      sublabel: "plants",
-    },
-    {
-      label: "Employing",
-      value: "1200+",
-      sublabel: "people",
-    },
-  ]
+  {
+    label: "Presence in",
+    value: "4",
+    sublabel: "continents",
+  },
+  {
+    label: "Clients in",
+    value: "55",
+    sublabel: "countries",
+  },
+  {
+    label: "Manufacturing in",
+    value: "5 production",
+    sublabel: "plants",
+  },
+  {
+    label: "Employing",
+    value: "1200+",
+    sublabel: "people",
+  },
+];
 
 export default function WorldWide() {
+  // Refs for all overflow-translateText elements (desktop)
+  const overflowRefs = useRef([]);
+  // Refs for all mobile stat value+sublabel containers
+  const mobileStatRefs = useRef([]);
+
+  useEffect(() => {
+    // Animate each overflow-translateText (desktop) with SplitText by lines
+    overflowRefs.current.forEach((el) => {
+      if (!el) return;
+      // Split text into lines
+      let split = new SplitText(el, { type: "lines", mask:true });
+      gsap.set(split.lines, { yPercent: 100, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 85%",
+        end: "top 60%",
+        onEnter: () => {
+          gsap.to(split.lines, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.08,
+          });
+        },
+        once: true,
+        onLeaveBack: () => {
+          gsap.set(split.lines, { yPercent: 100, opacity: 0 });
+        },
+      });
+    });
+
+    // Animate each mobile stat value+sublabel (mobile) with SplitText by lines
+    mobileStatRefs.current.forEach((el) => {
+      if (!el) return;
+      let split = new SplitText(el, { type: "lines", mask:true });
+      gsap.set(split.lines, { yPercent: 100, opacity: 0 });
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 90%",
+        end: "top 70%",
+        onEnter: () => {
+          gsap.to(split.lines, {
+            yPercent: 0,
+            opacity: 1,
+            duration: 0.7,
+            ease: "power3.out",
+            stagger: 0.08,
+          });
+        },
+        once: true,
+        onLeaveBack: () => {
+          gsap.set(split.lines, { yPercent: 100, opacity: 0 });
+        },
+      });
+    });
+
+    // Cleanup
+    return () => {
+      ScrollTrigger.getAll().forEach((st) => st.kill());
+      // Optionally revert SplitText (if needed)
+      overflowRefs.current.forEach((el) => {
+        if (el && el.splitText) el.splitText.revert();
+      });
+      mobileStatRefs.current.forEach((el) => {
+        if (el && el.splitText) el.splitText.revert();
+      });
+    };
+  }, []);
+
   return (
-    <section className="w-full relative h-[110vh] px-[3vw] py-[5vw] flex max-md:flex-col max-md:py-[10vw] bg-[#1D1D1D]">
+    <section className="w-full relative overflow-x-hidden h-[110vh] px-[3vw] py-[5vw] flex max-md:flex-col max-md:py-[10vw] bg-[#1D1D1D]">
       <div className="w-1/2 max-md:w-full flex flex-col max-md:items-center max-md:justify-start items-start justify-between space-y-[2vw] h-full ">
         <div className="max-md:w-full max-md:flex max-md:justify-center max-md:items-center max-md:flex-col max-md:space-y-[5vw]">
-          <h2 className="heading2 max-sm:!text-[10vw] max-md:text-[5vw] max-md:text-center max-md:w-[60%] w-[50%`]">Innovating worldwide</h2>
+          <h2 className="heading2 max-sm:!text-[10vw] max-md:text-[5vw] max-md:text-center max-md:w-[60%] w-[50%`]">
+            Innovating worldwide
+          </h2>
           <p className="content2 max-sm:!text-[5vw] max-md:!text-[2.5vw] max-md:w-[100%] max-md:text-center w-[70%] opacity-60">
             Relats is ahead of the curve in achieving sustainable change across
             the globe.
@@ -42,8 +120,24 @@ export default function WorldWide() {
             >
               <p className="text-[1vw] opacity-80 leading-[1.1] ">{stat.label}</p>
               <div className="text-[1.5vw] leading-[1.1] font-medium font-robert">
-                <p>{stat.value}</p>
-                <p>{stat.sublabel}</p>
+                <p
+                  className="overflow-translateText "
+                  ref={(el) => {
+                    overflowRefs.current[idx * 2] = el;
+                    if (el) el.splitText = new SplitText(el, { type: "lines", mask:true });
+                  }}
+                >
+                  {stat.value}
+                </p>
+                <p
+                  className="overflow-translateText"
+                  ref={(el) => {
+                    overflowRefs.current[idx * 2 + 1] = el;
+                    if (el) el.splitText = new SplitText(el, { type: "lines", mask:true });
+                  }}
+                >
+                  {stat.sublabel}
+                </p>
               </div>
             </div>
           ))}
@@ -64,9 +158,19 @@ export default function WorldWide() {
             key={idx}
             className="flex flex-col items-center justify-between min-w-[30vw] h-fit gap-[2vw] bg-white/15 backdrop-blur-[10px] rounded-[4vw] max-sm:p-[6vw] max-md:p-[3vw] p-[6vw] max-md:h-[18vh] max-sm:h-[20vh] max-sm:w-[45%] max-md:w-[24%] max-md:min-w-[23%] max-sm:min-w-[30vw]"
           >
-            <p className=" max-md:text-left opacity-80 max-sm:text-[3vw] max-md:text-[2vw] text-[3vw] leading-[1.1] w-full">{stat.label}</p>
-            <div className="text-[6vw] w-full leading-[1.1] font-medium font-robert text-center max-md:text-left max-sm:text-[6vw] max-md:text-[2.5vw]">
-              <p className="text-[5vw] max-sm:text-[5vw] max-md:text-[3.5vw]"> {stat.value} {stat.sublabel}</p>
+            <p className=" max-md:text-left opacity-80 max-sm:text-[3vw] max-md:text-[2vw] text-[3vw] leading-[1.1] w-full">
+              {stat.label}
+            </p>
+            <div
+              className="text-[6vw] w-full leading-[1.1] font-medium font-robert text-center max-md:text-left max-sm:text-[6vw] max-md:text-[2.5vw]"
+              ref={(el) => {
+                mobileStatRefs.current[idx] = el;
+                if (el) el.splitText = new SplitText(el, { type: "lines" });
+              }}
+            >
+              <p className="text-[5vw] max-sm:text-[5vw] max-md:text-[3.5vw]">
+                {stat.value} {stat.sublabel}
+              </p>
             </div>
           </div>
         ))}
