@@ -11,22 +11,34 @@ import Truck from '@/components/Homepage/Truck'
 import Commitment from '@/components/Homepage/Commitment'
 import Loader from '@/components/Loader/Loader'
 import SelfClosing from '@/components/Homepage/SelfClosing'
+import FlamabilityMobile from '@/components/Homepage/FlamabilityMobile'
+import SelfClosingMobile from '@/components/Homepage/SelfClosingMobile'
+import ProductionMobile from '@/components/Homepage/ProductionMobile'
+import FooterMobile from '@/components/Footer/FooterMobile'
+import TruckMobile from '@/components/Homepage/TruckMobile'
+import PeriflexMobile from '@/components/Homepage/PerifexMobile'
 
 export default function page() {
   return (
     <>
-      <Loader />
+      {/* <Loader /> */}
       <Header />
       <Hero />
       <VideoGrid />
       <Flamability />
+      <FlamabilityMobile />
       <SelfClosing />
+      <SelfClosingMobile />
       <Production />
+      <ProductionMobile />
       <Periflex />
+      <PeriflexMobile />
       <Truck />
+      <TruckMobile />
       <Commitment />
       <WorldWide />
       <Footer />
+      <FooterMobile />
     </>
   )
 }

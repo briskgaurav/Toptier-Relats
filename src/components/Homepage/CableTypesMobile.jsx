@@ -14,25 +14,26 @@ const cardData = [
   {
     key: "card-0",
     cardProps: {
+        contentClassName: "max-sm:text-[5vw] text-[3vw] w-full",
     },
-    positionClassName: "left-[40%] w-full top-[35%] -translate-x-1/2 -translate-y-1/2 absolute",
+    positionClassName: "left-[-10%] w-[80%] max-sm:top-[10%] max-md:top-[15%] max-md:-translate-x-[25%] max-sm:-translate-x-0 -translate-y-1/2 absolute",
   },
   {
     key: "card-1",
     cardProps: {
-      contentClassName: "text-[1.3vw] w-full",
+      contentClassName: "max-sm:text-[5vw] w-full",
       content: "FMVSS 302 Self-extinguishing UL94 V1 (Ø 18 mm)",
     },
-    positionClassName: "left-[75%] w-full top-[45%] -translate-x-1/2 -translate-y-1/2 absolute",
+    positionClassName: "max-sm:left-[75%] max-md:left-[90%] w-[80%] top-[45%] -translate-x-1/2 -translate-y-1/2 absolute",
   },
   {
     key: "card-2",
     cardProps: {
-      contentClassName: "text-[1.3vw] w-full",
+      contentClassName: "max-sm:text-[5vw] w-full",
       heading: "Thermal Runway",
       content: "+1000ºC x 5 mins ≥ 5kV (TE) +1000ºC x 15 mins ≥ 2kV (DFT) +850ºC x 30 mins ≥ 2kV (DFT)",
     },
-    positionClassName: "left-[55%] w-full top-[80%] -translate-x-1/2 -translate-y-1/2 absolute",
+    positionClassName: "max-sm:left-[30%]  max-md:left-[10%] w-[80%] top-[60%] -translate-x-1/2 -translate-y-1/2 absolute",
   },
 ];
 
@@ -63,7 +64,7 @@ const cardVariants = {
   }),
 };
 
-export default function CableTypes({ type, setType, handleScrollToCable }) {
+export default function CableTypesMobile({ type, setType, handleScrollToCable }) {
 
   const handleTypeClick = (newType) => {
     if (newType === type) return;
@@ -73,8 +74,8 @@ export default function CableTypes({ type, setType, handleScrollToCable }) {
 
   return (
     <section
-      id="cable-types"
-      className="w-full cable-types max-md:hidden absolute inset-0 z-[5] h-screen"
+      id="cable-typesMobile"
+      className="w-full hidden max-md:block relative inset-0 z-[5] h-screen"
     >
       <div className="absolute inset-0 w-full h-full z-0">
         <AnimatePresence mode="wait">
@@ -100,33 +101,31 @@ export default function CableTypes({ type, setType, handleScrollToCable }) {
         </AnimatePresence>
       </div>
 
-      <div className="absolute h-full w-full flex inset-0 z-[5]">
-        <div className="w-full flex flex-col items-start px-[3vw] pb-[8vw] justify-end gap-[1.8vw] text-white h-full">
-          <p className="text-[.8vw] leading-[1.1] font-medium font-DMMono uppercase">
-            E-mobility solutions
-          </p>
-          <div>
+      <div className="absolute h-full w-full flex flex-col items-center justify-between inset-0 z-[5]">
+        <div className="w-full flex flex-col items-start  px-[3vw] pb-[8vw] justify-center gap-[1.8vw] text-white h-full">
+       
+          <div className="w-full text-center h-fit">
             <p
-              className={`text-[3.5vw] cursor-pointer leading-[1.2] tracking-tighter text-white font-medium font-robert ${type !== "revitex-wsx45" ? "opacity-50" : ""}`}
+              className={`text-[3.5vw] max-sm:text-[11.5vw] max-md:text-[5.5vw] cursor-pointer leading-[1.2] tracking-tighter text-white font-medium font-robert ${type !== "revitex-wsx45" ? "opacity-50" : ""}`}
               onClick={() => handleTypeClick("revitex-wsx45")}
             >
               Revitex WSX45
             </p>
             <p
               onClick={() => handleTypeClick("revitex-vsc25")}
-              className={`text-[3.5vw] cursor-pointer leading-[1.2] tracking-tighter font-medium font-robert ${type !== "revitex-vsc25" ? "opacity-50" : ""}`}
+              className={`text-[3.5vw] max-sm:text-[11.5vw] max-md:text-[5.5vw] cursor-pointer leading-[1.2] tracking-tighter font-medium font-robert ${type !== "revitex-vsc25" ? "opacity-50" : ""}`}
             >
               Revitex VSC25
             </p>
             <p
               onClick={() => handleTypeClick("revitex-vsctf")}
-              className={`text-[3.5vw] cursor-pointer leading-[1.2] tracking-tighter font-medium font-robert ${type !== "revitex-vsctf" ? "opacity-50" : ""}`}
+              className={`text-[3.5vw] max-sm:text-[11.5vw] max-md:text-[5.5vw] text-center w-full cursor-pointer leading-[1.2] tracking-tighter font-medium font-robert ${type !== "revitex-vsctf" ? "opacity-50" : ""}`}
             >
               Revitex VSCTF
             </p>
           </div>
-          <div className="flex items-center gap-[1vw]">
-            <p className="text-[.8vw] leading-[1.1] font-medium font-DMMono uppercase">
+          <div className="flex items-center  w-full justify-center gap-[1vw]">
+            <p className="text-[.8vw] max-sm:text-[2.5vw] max-md:text-[1.5vw] mt-[1vw] text-center leading-[1.1] font-medium font-DMMono uppercase">
               Available in{" "}
             </p>
             <span className="w-[.8vw] h-[.8vw] bg-orange rounded-full"></span>

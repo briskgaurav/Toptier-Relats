@@ -152,7 +152,7 @@ export default function Truck() {
     <section
       ref={containerRef}
       id="truck"
-      className="w-full h-[800vh] text-white relative "
+      className="w-full h-[800vh] max-md:hidden text-white relative "
     >
       <div className="h-screen overflow-hidden w-full sticky top-0">
         <video

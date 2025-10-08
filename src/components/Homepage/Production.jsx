@@ -64,7 +64,7 @@ export default function Production() {
   return (
     <section
       id="production"
-      className="h-[700vh]  bg-background relative w-screen"
+      className="h-[700vh] max-md:hidden bg-background relative w-screen overflow-x-hidden"
     >
       <div className="h-screen overflow-hidden w-full flex items-center justify-center sticky top-0">
         <div

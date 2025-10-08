@@ -7,9 +7,11 @@ import { splitTextByChars } from "@/Animation/GsapAnimation";
 import CableTypes from "./CableTypes";
 import useVideoScroll from "@/Animation/UseVideoScroll";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import UseMobile from "../UseMobile";
 gsap.registerPlugin(ScrollTrigger, SplitText, ScrollToPlugin);
 
 export default function Flamability() {
+  const {isMobile} = UseMobile()
   const [type, setType] = useState("revitex-wsx45");
   const videoRef = useRef(null);
   const containerRef = useRef(null);
@@ -215,7 +217,7 @@ export default function Flamability() {
         start: "50% top",
         end: "65% bottom",
         scrub: true,
-        marker: true,
+        marker: false,
         onEnter: () => {
           setCableType(0);
         },
@@ -283,7 +285,7 @@ export default function Flamability() {
     data-toggleon
       id="flamability"
       ref={containerRef}
-      className="w-full relative h-[1500vh]"
+      className="w-full max-md:hidden relative h-[1500vh]"
     >
       <div className="w-full h-screen sticky top-0 ">
         <video

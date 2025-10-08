@@ -70,7 +70,7 @@ export default function Footer() {
       <section
         ref={containerRef}
         id="footer"
-        className="h-[500vh] relative w-full  "
+        className="h-[500vh] max-md:hidden relative w-full  "
       >
         <div className="h-screen bg-red-800 overflow-hidden w-full sticky top-0">
           <video
@@ -116,7 +116,7 @@ export default function Footer() {
         </div>
       </section>
       <section
-        className="bg-[#1D1D1D] flex items-center w-full  justify-between px-[2vw] py-[1vw]"
+        className="bg-[#1D1D1D] max-md:hidden flex items-center w-full  justify-between px-[2vw] py-[1vw]"
         id="footer-navigations"
       >
         <Link href="/" className="w-[10vw] pl-[1vw] py-[1vw] h-fit block hover:opacity-100">

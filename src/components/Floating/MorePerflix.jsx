@@ -522,7 +522,7 @@ export default function MorePerflix() {
       <div
         ref={containerRef}
         style={{ display: 'none' }}
-        className="group fixed z-[50] origin-center bottom-[2.5vw] left-1/2 -translate-x-1/2"
+        className="group fixed z-[50] max-md:hidden origin-center bottom-[2.5vw] left-1/2 -translate-x-1/2"
       >
         <div
           className="flex items-center bg-white/20 group-hover:bg-white/30 transition-all duration-500 cursor-pointer backdrop-blur-[10px] p-[.2vw] gap-[1vw] rounded-[1.2vw]"

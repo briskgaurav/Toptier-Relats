@@ -46,7 +46,7 @@ export default function Hero() {
     <section
       id="hero"
       ref={containerRef}
-      className="h-screen w-full relative"
+      className="h-screen w-full relative overflow-x-hidden"
     >
       
       <video
@@ -57,12 +57,12 @@ export default function Hero() {
         className="h-full w-full object-cover absolute inset-0 z-[1] "
         src="assets/videos/hero/hero.mp4"
       />
-      <div className="h-full w-full text-white relative z-[2] flex items-center flex-col justify-end  pb-[10vw]">
+      <div className="h-full w-full text-white relative z-[2] flex items-center flex-col justify-end  pb-[10vw] max-md:pb-[30vw]">
         <h1
           ref={headingRef}
-          className="text-center tracking-tighter text-[5.8vw] w-[90%] leading-[1.1] font-medium font-robert"
+          className="text-center tracking-tighter  max-sm:text-[11.5vw] text-[5.8vw] w-[90%] max-sm:w-[89%] max-md:w-[65%] leading-[1.1] font-medium font-robert"
         >
-          Protection sleeves for the mobility <br /> of tomorrow
+          Protection sleeves for the mobility <br className="max-md:hidden" /> of tomorrow
         </h1>
       </div>
     </section>

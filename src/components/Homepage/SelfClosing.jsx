@@ -310,6 +310,7 @@ export default function SelfClosing() {
   }, []);
 
   useEffect(() => {
+    
     let splittedText, textTl;
 
     const ctx = gsap.context(() => {
@@ -423,7 +424,7 @@ export default function SelfClosing() {
   }, []);
 
   return (
-    <section id="self-closing" className="w-full h-[1300vh]" ref={containerRef}>
+    <section id="self-closing" className="w-full h-[1300vh] max-md:hidden" ref={containerRef}>
       <div className="h-screen w-full overflow-hidden sticky top-0">
         <video
           ref={videoRef}
@@ -433,7 +434,7 @@ export default function SelfClosing() {
           playsInline
           loop
         ></video>
-        <h2 className="heading2 w-[60%] scale-65 text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-white text-self-closing">
+        <h2 className="heading2 w-[60%] max-md:text-[11.5vw]  scale-65 text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-white text-self-closing">
           We make mobility safer <br /> across all industries
         </h2>
         <div className="w-full closing-images-container h-full absolute inset-0 z-[1] opacity-0">
