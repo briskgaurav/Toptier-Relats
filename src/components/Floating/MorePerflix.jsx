@@ -19,7 +19,7 @@ const states = [
   },
   {
     key: 'video-grid',
-    image: '/assets/img/floating/video-grid.jpg',
+    image: '/assets/img/floating/catalog.jpg',
     alt: 'Video Grid',
     text: 'See our Video Grid',
   },

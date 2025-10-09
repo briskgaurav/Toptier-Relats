@@ -2,7 +2,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
-export default function useVideoScroll({ video, container, triggerValues = {} }) {
+export default function useVideoScroll({ video, container, scrub = 1, triggerValues = {} }) {
     if (!video || !container) return;
 
     let duration = 1;
@@ -16,7 +16,7 @@ export default function useVideoScroll({ video, container, triggerValues = {} })
           trigger: container,
           start: triggerValues.start || "top 50%",
           end: triggerValues.end || "90% bottom",
-          scrub: 1,
+          scrub: scrub,
           markers: false,
         },
       });

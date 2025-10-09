@@ -21,6 +21,7 @@ export default function Periflex() {
 
     const cleanup = useVideoScroll({
       video,
+      scrub: true,
       container,
       triggerValues: {
         start: "top top",

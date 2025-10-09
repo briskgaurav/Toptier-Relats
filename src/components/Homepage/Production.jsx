@@ -21,8 +21,8 @@ export default function Production() {
       scrollTrigger: {
         trigger: "#production",
         start: "0% 50%",
-        end: "90% 100%",
-        scrub: 1.5,
+        end: "90% 50%",
+        scrub: 1,
         markers: false,
         onUpdate: (self) => {
           setCounter(Math.round(obj.value));
@@ -36,6 +36,9 @@ export default function Production() {
         width: "130%",
         borderRadius: "0vw",
         height: "130%",
+        ease: "none",
+        force3D: true, // Enable GPU acceleration
+        willChange: "width, height, border-radius", // Optimize for these properties
       },
       "<"
     );
@@ -43,15 +46,17 @@ export default function Production() {
       ".text-production",
       {
         y: "0%",
+        ease: "none",
       },
+      "<+.2"
     );
    
     tl.to(
       obj,
       {
         value: 500,
-        duration: 0.4,
-        ease:'none',
+        duration: 0.2,
+        ease: "none",
         onComplete: () => {
           setCounter(Math.round(obj.value));
         },
@@ -67,13 +72,17 @@ export default function Production() {
   return (
     <section
       id="production"
-      className="h-[700vh] max-md:hidden bg-background relative w-screen "
+      className="h-[700vh] max-md:hidden bg-background relative w-screen"
     >
       <div className="h-screen overflow-hidden w-full flex items-center justify-center sticky top-0">
         <div
           ref={imageContainerRef}
-          className="z-[1] flex  items-center overflow-hidden relative justify-center"
-          style={{ width: "25%", height: "40%" , borderRadius: "1.5vw"}}
+          className="z-[1] flex items-center overflow-hidden relative justify-center will-change-[width,height]"
+          style={{ 
+            width: "25%", 
+            height: "40%", 
+            borderRadius: "1.5vw"
+          }}
         >
           <Image
             className="h-full w-full object-cover"
@@ -83,7 +92,7 @@ export default function Production() {
             priority
           />
         </div>
-        <div className=" w-full h-full absolute top-0 left-0 z-[2] flex items-center justify-center">
+        <div className="w-full h-full absolute top-0 left-0 z-[2] flex items-center justify-center">
           <div className="text-center text-production translate-y-[220%]">
             <p className="content">Relats produces</p>
             <h2 className="heading">

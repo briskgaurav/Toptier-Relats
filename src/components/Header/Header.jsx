@@ -27,7 +27,7 @@ export default function Header() {
 
   return (
     <>
-      <nav className='px-[.5vw] overflow-x-hidden fixed z-[50] max-md:w-[90vw] max-md:px-[5vw] navbarRef rounded-[1.3vw] h-[7vh] py-[.3vw] left-1/2 bg-white/20 backdrop-blur-[10px] translate-x-[-50%] max-md:translate-x-[-44%] max-sm:translate-x-[-44%] max-md:left-[45%] flex items-center gap-[3vw] max-md:gap-[4vw] top-[1vw] max-md:top-[3vw] max-md:h-[12vw] max max-md:rounded-[4vw]'>
+      <nav className='px-[.5vw] fixed z-[50] max-md:w-[90vw] max-md:px-[5vw] navbarRef rounded-[1.3vw] h-[7vh] py-[.3vw] left-1/2 bg-white/20 backdrop-blur-[10px] translate-x-[-50%] max-md:translate-x-[-44%] max-sm:translate-x-[-44%] max-md:left-[45%] flex items-center gap-[3vw] max-md:gap-[4vw] top-[1vw] max-md:top-[3vw] max-md:h-[12vw] max max-md:rounded-[4vw]'>
         <div className='w-[8vw] max-md:w-[25vw] pl-[1vw] py-[1vw] h-fit max-md:pl-0 max-md:py-0 flex items-center'>
           <LogoSVG />
         </div>
