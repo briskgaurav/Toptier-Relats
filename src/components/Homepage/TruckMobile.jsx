@@ -91,7 +91,7 @@ export default function TruckMobile() {
                   <div className="max-sm:w-[10vw] max-sm:h-[10vw] w-[5vw] h-[5vw] bg-white/70 text-blackshade rounded-[2vw] max-sm:p-[2.5vw] p-[1.2vw] flex items-center justify-center">
                     <Image src={item.icon} className="mix-blend-difference" alt={item.label} width={100} height={100} />
                   </div>
-                  <p className="max-sm:text-[5vw] text-[3vw] font-medium">{item.label}</p>
+                  <p className="max-sm:text-[5vw] text-[3vw] font-robert font-medium">{item.label}</p>
                 </div>
               ))}
 
