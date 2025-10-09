@@ -21,7 +21,7 @@ import PeriflexMobile from '@/components/Homepage/PerifexMobile'
 export default function page() {
   return (
     <>
-      {/* <Loader /> */}
+      <Loader />
       <Header />
       <Hero />
       <VideoGrid />
