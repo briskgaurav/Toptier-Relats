@@ -20,8 +20,9 @@ const cardData = [
   {
     key: "card-1",
     cardProps: {
+      heading:'Flammability',
       imageSrc:'/assets/img/revitex/icons/flammability.svg',
-      contentClassName: "text-[1.3vw] w-full",
+      contentClassName: "text-[1.3vw] w-[100%] mt-[1vw]",
       content: "FMVSS 302 Self-extinguishing UL94 V1 (Ø 18 mm)",
     },
     positionClassName: "left-[75%] w-full top-[45%] -translate-x-1/2 -translate-y-1/2 absolute",
@@ -29,10 +30,11 @@ const cardData = [
   {
     key: "card-2",
     cardProps: {
+      heading:'Thermal runway',
       imageSrc:'/assets/img/revitex/icons/thermal.svg',
-      contentClassName: "text-[1.3vw] w-full",
+      contentClassName: "text-[1.3vw] mt-[1vw] w-full",
       heading: "Thermal Runway",
-      content: "+1000ºC x 5 mins ≥ 5kV (TE) +1000ºC x 15 mins ≥ 2kV (DFT) +850ºC x 30 mins ≥ 2kV (DFT)",
+      content: "+500ºC x 5 mins ≥ 2kV (Thermal Exposure)",
     },
     positionClassName: "left-[55%] w-full top-[80%] -translate-x-1/2 -translate-y-1/2 absolute",
   },

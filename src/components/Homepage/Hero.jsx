@@ -11,6 +11,18 @@ export default function Hero() {
   const headingRef = useRef(null);
   const containerRef = useRef(null);
 
+
+
+  useEffect(() => {
+    gsap.from(".animate-fadeDown", {
+      yPercent: -200,
+      opacity: 0,
+      duration: .8,
+      ease: "linear",
+      repeat: -1,
+    });
+  }, [])
+
   useEffect(() => {
     if (!headingRef.current || !containerRef.current) return;
 
@@ -33,7 +45,7 @@ export default function Hero() {
         ease: "none",
         duration: 0.5,
       },
-      
+
     );
 
     return () => {
@@ -41,6 +53,23 @@ export default function Hero() {
       tl.kill();
     };
   }, []);
+  useEffect(() => {
+
+    gsap.to(".mouse-div", {
+      yPercent:50,
+      opacity: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "0% top",
+        end: "40%",
+        scrub: true,
+        markers: false,
+      },
+    });
+   
+  }, [])
+  
 
   return (
     <section
@@ -48,7 +77,7 @@ export default function Hero() {
       ref={containerRef}
       className="h-screen w-full relative overflow-x-hidden"
     >
-      
+
       <video
         autoPlay
         muted
@@ -60,10 +89,17 @@ export default function Hero() {
       <div className="h-full w-full text-white relative z-[2] flex items-center flex-col justify-end  pb-[10vw] max-md:pb-[30vw]">
         <h1
           ref={headingRef}
-          className="text-center tracking-tighter  max-sm:text-[11.5vw] text-[5.8vw] w-[90%] max-sm:w-[89%] max-md:w-[65%] leading-[1.1] font-medium font-robert"
+          className="text-center tracking-tighter  max-sm:text-[11.5vw] text-[5.8vw] w-[63%] max-sm:w-[89%] max-md:w-[65%] leading-[1.1] font-medium font-robert"
         >
-          Protection sleeves for the mobility <br className="max-md:hidden" /> of tomorrow
+          Protection sleeves for the mobility  of tomorrow
         </h1>
+      </div>
+
+      <div className="fixed mouse-div flex items-center gap-[.4vw] z-[50] right-[3vw] max-md:hidden bottom-[2.5vw] scrolldown" >
+        <div className="mouse flex items-center justify-center h-[1.5vw] w-[1vw] rounded-full border border-white">
+          <div className="h-[.2vw] translate-y-[0%] w-[.2vw] rounded-full bg-white animate-fadeDown"></div>
+        </div>
+        <div className="text scale-98">Scroll down</div>
       </div>
     </section>
   );

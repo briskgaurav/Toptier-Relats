@@ -23,9 +23,11 @@ export default function Periflex() {
       video,
       scrub: true,
       container,
+      markers: false,
       triggerValues: {
-        start: "top top",
+        start: "-5% top",
         end: "30% top",
+
       },
     });
 
@@ -40,8 +42,8 @@ export default function Periflex() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
-        start: "30% 0%",
-        end: "40% 50%",
+        start: "23% 0%",
+        end: "40% 100%",
         scrub: true,
         markers: false,
       },
@@ -99,11 +101,12 @@ export default function Periflex() {
             </div>
           </div>
           <div className="w-[40%] h-full relative">
-            <Cards positionClassName="absolute cards top-[20%] left-[15%]" />
-            <Cards positionClassName="absolute cards top-[30%] left-[55%]" />
+            <Cards positionClassName="absolute cards top-[20%] left-[15%]" svgColor="text-white" />
+            <Cards svgColor="text-white" extraContent="(100.000 - 199.999 cycles)" extraContentClassName="mt-[-3vw] text-[1.35vw]" content="ISO 6722-1 
+Class 7" heading="Mechanical Protection" contentClassName="text-[1.8vw] mt-[-1vw]" positionClassName="absolute cards top-[30%] left-[55%]" />
           </div>
         </div>
-     <IndustriesAnimation activeIndustry={activeIndustry} setActiveIndustry={setActiveIndustry} containerRef={containerRef} />
+        <IndustriesAnimation activeIndustry={activeIndustry} setActiveIndustry={setActiveIndustry} containerRef={containerRef} />
       </div>
     </section>
   );

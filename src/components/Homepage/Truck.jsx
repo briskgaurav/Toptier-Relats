@@ -138,7 +138,7 @@ export default function Truck() {
     nextTl.to(truckItems, {
       opacity: 1,
       duration: 0.5,
-      stagger: 1,
+      stagger: .9,
       ease: "none",
     });
 
@@ -164,8 +164,8 @@ export default function Truck() {
         />
         <div className="w-full h-full flex absolute inset-0 z-[1]">
           <div className="h-full px-[3vw] flex-col flex items-center justify-center relativepy-[4vw] w-[50%]">
-            <h2 className="heading2 absolute top-[4vw] left-[3vw] truckText w-[40%]">
-              Where power meets protection
+            <h2 className="heading2 absolute top-[4vw] left-[3vw] truckText w-[45%]">
+              Where power <br className="max-md:hidden" /> meets protection
             </h2>
             <div className="h-[90%] truck-left w-full px-[1vw] space-y-[2vw] pt-[7vw] ">
               <p className="font-DMMono cursor-pointer text-[.8vw] leading-[1.1] font-medium uppercase">Top tier solutions for:</p>
@@ -184,8 +184,8 @@ export default function Truck() {
             </div>
           </div>
           <div className="h-full relative px-[3vw] py-[1.5vw] w-[50%]">
-            <h2 className="heading2 absolute text-right right-[3vw] bottom-[4vw] w-[60%] truckText2">
-              Discover what's inside
+            <h2 className="heading2 absolute text-right right-[4vw] bottom-[4vw] w-[65%] truckText2">
+              Discover <br className="max-md:hidden" /> what's inside
             </h2>
             <div className="h-fit truck-right w-full items-center justify-end gap-[2vw] px-[1vw] flex">
               <div className="flex items-center gap-[1vw]">

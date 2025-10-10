@@ -3,6 +3,8 @@ import React, { useRef, useEffect, useState, useCallback } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin";
+import { splitTextByChars } from "@/Animation/GsapAnimation";
+import { FlameSVG, TemperatureSVG, ThermalSVG } from "./Cards";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -19,7 +21,7 @@ const INDUSTRIES = [
       abrasion: "Class 4 (4.000 - 14.999 cycles)",
       abrasionStandard: "ISO 6722-1",
       availableColors: ["orange-600", "blackshade"],
-      icon: "/assets/img/revitex/icons/temperature.svg",
+      icon: <TemperatureSVG />,
       feature: "Abrasion resistance",
     },
   },
@@ -34,7 +36,7 @@ const INDUSTRIES = [
       abrasion: "Class 5 (15.000+ cycles)",
       abrasionStandard: "ISO 6722-2",
       availableColors: ["orange-600", "blackshade"],
-      icon: "/assets/img/revitex/icons/temperature.svg",
+      icon: <FlameSVG />,
       feature: "High voltage protection",
     },
   },
@@ -49,7 +51,7 @@ const INDUSTRIES = [
       abrasion: "Class 3 (1.000 - 3.999 cycles)",
       abrasionStandard: "ISO 6722-3",
       availableColors: ["orange-600", "blackshade"],
-      icon: "/assets/img/revitex/icons/temperature.svg",
+      icon: <TemperatureSVG />,
       feature: "Flame retardant",
     },
   },
@@ -64,7 +66,7 @@ const INDUSTRIES = [
       abrasion: "Class 5 (15.000+ cycles)",
       abrasionStandard: "EN 50305",
       availableColors: ["orange-600", "blackshade"],
-      icon: "/assets/img/revitex/icons/temperature.svg",
+      icon: <FlameSVG />,
       feature: "Railway certified",
     },
   },
@@ -79,7 +81,7 @@ const INDUSTRIES = [
       abrasion: "Class 2 (500 - 999 cycles)",
       abrasionStandard: "ISO 6722-4",
       availableColors: ["orange-600", "blackshade"],
-      icon: "/assets/img/revitex/icons/temperature.svg",
+      icon: <ThermalSVG />,
       feature: "Eco-friendly",
     },
   },
@@ -90,7 +92,7 @@ const SCROLL_TRIGGERS = [
   { start: "40% top", end: "50% top", industry: "Hybrid & Electric" },
   { start: "50% top", end: "60% top", industry: "Buses & Trucks" },
   { start: "60% top", end: "70% top", industry: "Railway" },
-  { start: "70% top", end: "80% top", industry: "Agriculture machines" },
+  { start: "70% top", end: "100% bottom", industry: "Agriculture machines" },
 ];
 
 export default function SelfClosing() {
@@ -134,7 +136,7 @@ export default function SelfClosing() {
 
   // Helper: Calculate vertical position for overall container
   const calculateVerticalPosition = (idx) => {
-    const minY = -50; // Start at top
+    const minY = -60; // Start at top
     const maxY = 0;   // End at bottom
     const totalSteps = INDUSTRIES.length - 1;
     return minY + ((maxY - minY) * idx) / totalSteps;
@@ -283,20 +285,21 @@ export default function SelfClosing() {
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Text animation
-      const chars = gsap.utils.toArray(".text-self-closing");
-      gsap.set(chars, { opacity: 0 });
+      const splittedText2 = splitTextByChars(".text-self-closing");
+      gsap.set(splittedText2.chars, { opacity: 0 });
 
       const textTl = gsap.timeline({
         scrollTrigger: {
           trigger: containerRef.current,
-          start: "top top",
+          start: "5% top",
           end: "25% top",
           scrub: true,
+          markers: false,
         },
       });
 
-      textTl.to(chars, { opacity: 1, stagger: 0.06, ease: "none", duration: 0.5 }, 0);
-      textTl.to(chars, { opacity: 0, stagger: 0.06, ease: "none", duration: 0.5 }, "+=0.5");
+      textTl.to(splittedText2.chars, { opacity: 1, stagger: 0.06, ease: "none", duration: 0.5 });
+      textTl.to(splittedText2.chars, { opacity: 0, stagger: 0.06, ease: "none", duration: 0.5 }, "+=0.5");
 
       // Closing images animation
       const closingImagesTl = gsap.timeline({
@@ -318,7 +321,7 @@ export default function SelfClosing() {
     if (!containerRef.current) return;
 
     if (translationOverallRef.current) {
-      gsap.set(translationOverallRef.current, { yPercent: -50 });
+      gsap.set(translationOverallRef.current, { yPercent: -60 });
     }
 
     const triggers = SCROLL_TRIGGERS.map(({ start, end, industry }) => {
@@ -373,16 +376,20 @@ export default function SelfClosing() {
                 key={activeIndustryObj?.image}
                 src={activeIndustryObj?.image}
                 alt={activeIndustryObj?.label || "industry"}
-                className="w-full relative h-full z-[1] object-cover"
+                className="w-full relative h-full z-[5] object-cover"
               />
             </div>
           </div>
+
+          <div className="w-full h-full bg-blackshade/20 absolute flex inset-0 z-[4]">
+
+          </div>
           
           {/* Content Overlay */}
-          <div className="w-full h-full bg-blackshade/20 absolute flex inset-0 z-[5]">
+          <div className="w-full h-full  absolute flex inset-0 z-[5]">
             {/* Left Side - Industry Cards */}
             <div className="w-1/2 h-full relative z-[5] flex items-end justify-start pb-[3vw] px-[3vw]">
-              <div className="container h-fit w-fit bg-white/10 border border-white/20 backdrop-blur-[5px] rounded-[1.5vw] overflow-hidden">
+              <div className="container h-fit w-fit bg-white/10 border border-white/20 backdrop-blur-[10px] rounded-[1.5vw] overflow-hidden">
                 {INDUSTRIES.map((industry, idx) => (
                   <div
                     key={industry.key}
@@ -391,7 +398,7 @@ export default function SelfClosing() {
                     onClick={() => handleCard(industry.key, idx)}
                   >
                     <p className="content2">{industry.label}</p>
-                    <div className="w-full overflow-hidden h-[15vw] rounded-[1.5vw]">
+                    <div className="w-full overflow-hidden h-[17vw] rounded-[1.5vw]">
                       <video
                         src={industry.video}
                         className="w-full h-full object-cover"
@@ -421,21 +428,17 @@ export default function SelfClosing() {
                   {INDUSTRIES.map((industry) => (
                     <div
                       key={industry.key}
-                      className="p-[2vw] space-y-[1vw] w-full bg-white/20 backdrop-blur-[10px] rounded-[1.5vw] border border-white/20 h-fit"
+                      className="p-[2vw] space-y-[1vw] w-full bg-white/20 backdrop-blur-[10px]  h-fit"
                     >
                       <p className="heading2 w-full">{industry.data.name}</p>
                       <div className="flex mt-[0vw] items-center gap-[1vw]">
-                        <div className="w-[1.3vw] h-[1.3vw]">
-                          <img
-                            src={industry.data.icon}
-                            alt={industry.data.feature}
-                            className="w-full h-full object-cover"
-                          />
+                        <div className="w-[1.3vw] text-orange relative h-[1.3vw]">
+                         {industry.data.icon}
                         </div>
                         <p>{industry.data.feature}</p>
                       </div>
-                      <p className="content2">{industry.data.temperature}</p>
-                      <div className="font-DMMono space-y-[.8vw] font-medium text-[.8vw]">
+                      <p className="content2 mt-[-.8vw]">{industry.data.temperature}</p>
+                      <div className="font-DMMono mt-[1.5vw] space-y-[.8vw] font-medium text-[.8vw]">
                         <p className="leading-[1.1] font-medium uppercase">Abrasion resistance</p>
                         <div className="bg-white overflow-hidden pl-[7vw] relative w-fit text-blackshade px-[.5vw] rounded-full">
                           <p>{industry.data.abrasion}</p>
@@ -443,7 +446,7 @@ export default function SelfClosing() {
                             {industry.data.abrasionStandard}
                           </p>
                         </div>
-                        <div className="flex items-center gap-[1vw] font-medium">
+                        <div className="flex mt-[1.5vw] items-center gap-[1vw] font-medium">
                           <p className="uppercase">Available in</p>
                           {industry.data.availableColors.map((color, idx) => (
                             <span

@@ -7,6 +7,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Production() {
   const imageContainerRef = useRef(null);
+  const imageRef = useRef(null);
   const [counter, setCounter] = useState(0);
 
   // Split counter into 3 digits, always padded to 3
@@ -14,53 +15,75 @@ export default function Production() {
 
   useEffect(() => {
     const el = imageContainerRef.current;
-    if (!el) return;
+    const imgEl = imageRef.current;
+    if (!el || !imgEl) return;
 
     let obj = { value: 0 };
+
     let tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#production",
-        start: "0% 50%",
-        end: "90% 50%",
+        start: "-2% 100%",
+        end: "90% 70%",
         scrub: 1,
         markers: false,
-        onUpdate: (self) => {
+        onUpdate: () => {
           setCounter(Math.round(obj.value));
         },
       },
     });
 
-    tl.to(
+    // Use proportional inset (expanding from all sides to center)
+    // Start with inset covering the same area as the circle, ending with inset(0%)
+    // Calculate a starting inset value that reasonably matches the circle (~50% cover)
+    tl.fromTo(
       el,
       {
-        width: "130%",
-        borderRadius: "0vw",
-        height: "130%",
-        ease: "none",
-        force3D: true, // Enable GPU acceleration
-        willChange: "width, height, border-radius", // Optimize for these properties
+        // large enough so that visual matches circle burst from center
+        clipPath: "inset(50% 50% 50% 50% round 2vw)", // reveal from the center outward
+ 
+      },
+      {
+        clipPath: "inset(0% 0% 0% 0% round 0vw)", 
+        force3D: true,
+        willChange: "clip-path, border-radius",
+      },
+      0
+    );
+    tl.fromTo(
+      imgEl,
+      {
+        scale: 1,
+      },
+      {
+        scale: 1.5,
+        duration: 1,
+        ease: "power1.inOut",
+        willChange: "transform",
       },
       "<"
     );
+
+    // Animate text sliding in
     tl.to(
       ".text-production",
       {
         y: "0%",
-        ease: "none",
+        ease: "power1.inOut",
+        duration: 0.2,
       },
       "<+.2"
     );
-   
     tl.to(
       obj,
       {
         value: 500,
-        duration: 0.2,
-        ease: "none",
-        onComplete: () => {
-          setCounter(Math.round(obj.value));
-        },
+        duration: 0.3,
+        ease: "power1.inOut",
+        onUpdate: () => setCounter(Math.round(obj.value)),
+        onComplete: () => setCounter(Math.round(obj.value)),
       },
+      "<+.3>"
     );
 
     return () => {
@@ -77,19 +100,22 @@ export default function Production() {
       <div className="h-screen overflow-hidden w-full flex items-center justify-center sticky top-0">
         <div
           ref={imageContainerRef}
-          className="z-[1] flex items-center overflow-hidden relative justify-center will-change-[width,height]"
-          style={{ 
-            width: "25%", 
-            height: "40%", 
-            borderRadius: "1.5vw"
+          className="image --cover absolute left-[50%] origin-center top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full"
+          style={{
+            // Proportional inset reveal, will be animated by gsap
+            overflow: "hidden",
+       
           }}
         >
-          <Image
-            className="h-full w-full object-cover"
-            src={"/assets/img/sustainability.jpg"}
-            alt="production"
-            fill
-            priority
+          <img
+            ref={imageRef}
+            src="https://toptier.relats.com/wp-content/themes/relats/img/sustainability.jpg"
+            alt=""
+            className="w-full h-full object-cover"
+            style={{
+              scale: 1.13,
+              transition: "scale 0.4s"
+            }}
           />
         </div>
         <div className="w-full h-full absolute top-0 left-0 z-[2] flex items-center justify-center">

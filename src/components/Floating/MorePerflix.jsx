@@ -149,11 +149,11 @@ function Dialog({ open, onClose, currentState }) {
 
         <div style={{ scrollbarWidth: 'none' }} className='w-[50%] overflow-y-scroll p-[3vw] py-[4vw] text-blackshade space-y-[2vw] pb-[5vw] h-full '>
           <h2 className='heading2 text-blackshade'>PLAS8 NA</h2>
-          <p className='font-DMMono opacity-50 text-[1vw] leading-[1.1]'>E-Mobility & Automotive</p>
+          <p className='font-DMMono uppercase texti-[.85vw] translate-x-[.4vw] opacity-60 text-[.8vw] leading-[1.1]'>E-Mobility & Automotive</p>
           <p className='text-blackshade w-[80%]'>Warp-knit open sleeve with unique wraparound qualities allowing easy cable bundling after wire harness assembly.
           </p>
 
-          <form className="flex flex-col  w-[100%] max-w-[38vw]">
+          <form className="flex flex-col space-y-[.5vw] h-fit w-[100%] max-w-[38vw]">
             <input
               type="text"
               placeholder="Full Name*"
@@ -188,14 +188,14 @@ function Dialog({ open, onClose, currentState }) {
               className="w-full border-b border-[#e0e0e0] bg-transparent outline-none text-[1.7vw] font-medium py-[1.2vw]  placeholder:text-[#999] focus:border-blackshade resize-none"
 
             />
-            <div className="flex  items-center gap-[1vw] mt-[3vw]">
+            <div className="flex items-center gap-[1vw] mt-[1vw]">
               <input
                 type="checkbox"
                 id="terms"
                 required
-                className="w-[1vw] h-[1vw] accent-[#FF5710] rounded-[0.2vw] border border-[#bbb]"
+                className="w-[1vw] h-[1vw]  accent-[#FF5710] rounded-[0.2vw] border border-[#bbb]"
               />
-              <label htmlFor="terms" className="text-[.8vw] font-bold  font-DMMono text-blackshade select-none">
+              <label htmlFor="terms" className="text-[.8vw] tracking-tight font-regular  font-DMMono text-blackshade select-none">
                 I HAVE READ AND ACCEPT THE{" "}
                 <a
                   href="#"
@@ -221,7 +221,7 @@ function Dialog({ open, onClose, currentState }) {
             <img
               src={"https://toptier.relats.com/wp-content/themes/relats/img/popups/periflex-emi/mask.png"}
               alt="Periflex EMI Mask"
-              className="h-auto w-[35vw] object-contain"
+              className="h-auto w-[38vw] object-contain"
             
             />
           </div>

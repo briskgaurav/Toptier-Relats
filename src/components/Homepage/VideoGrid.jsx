@@ -94,8 +94,8 @@ export default function VideoGrid() {
             textTl = gsap.timeline({
                 scrollTrigger: {
                     trigger: videoGridRef.current,
-                    start: isMobile ? '20% 0%' : 'top top',
-                    end: "100% ",
+                    start: isMobile ? '20% 0%' : '50% top',
+                    end: "300% top",
                     scrub: true,
                     markers: false,
                 },
@@ -130,6 +130,7 @@ export default function VideoGrid() {
                 splittedText2.chars,
                 {
                     opacity: 1,
+                    
                     stagger: 0.06,
                     ease: "none",
                     duration: 0.5,
@@ -257,8 +258,8 @@ export default function VideoGrid() {
                         </div>
                     </div>
                 </div>
-                <p className='text-white text-[3vw] max-md:text-[5vw]  max-sm:text-[7vw] video-grid-text leading-[1.1] font-medium font-robert text-center w-[40%] absolute max-md:w-[65%] max-sm:w-[92%] top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2' style={{ willChange: 'opacity' }}>Your 360° partner for safety in electromobility</p>
-                <p className='text-white text-[3vw] max-sm:text-[7vw]  max-md:text-[5vw] video-grid-text2 leading-[1.1] font-medium font-robert text-center w-[36%] max-sm:w-[70%] max-md:w-[60%] absolute top-[40%] left-[50%] -translate-x-1/2 -translate-y-1/2' style={{ willChange: 'opacity' }}>We cover all sustainable
+                <p className='text-white text-[3.3vw] max-md:text-[5vw]  max-sm:text-[7vw] video-grid-text leading-[1.1] font-medium font-robert text-center w-[44%] absolute max-md:w-[65%] max-sm:w-[92%] top-[45%] left-[50%] -translate-x-1/2 -translate-y-1/2' style={{ willChange: 'opacity' }}>Your 360° partner for safety in electromobility</p>
+                <p className='text-white text-[3.3vw] max-sm:text-[7vw]  max-md:text-[5vw] video-grid-text2 leading-[1.1] font-medium font-robert text-center w-[37%] max-sm:w-[78%] max-md:w-[60%] absolute top-[45%] left-[50%] -translate-x-1/2 -translate-y-1/2' style={{ willChange: 'opacity' }}>We cover all sustainable
                     mobility solutions</p>
                 <div className='h-[.7vw] absolute bottom-0 bg-blackshade w-full'>
 

@@ -37,7 +37,7 @@ export default function Footer() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: "top top",
-        end: "50% top",
+        end: "100% 100%",
         scrub: true,
         markers: false,
       },
@@ -70,7 +70,7 @@ export default function Footer() {
       <section
         ref={containerRef}
         id="footer"
-        className="h-[500vh] max-md:hidden relative w-full  "
+        className="h-[400vh] max-md:hidden relative w-full  "
       >
         <div className="h-screen bg-red-800 overflow-hidden w-full sticky top-0">
           <video
@@ -122,9 +122,9 @@ export default function Footer() {
         <Link href="/" className="w-[10vw] pl-[1vw] py-[1vw] h-fit block hover:opacity-100">
           <LogoSVG />
         </Link>
-        <div className="flex w-[64%] items-center justify-between">
+        <div className="flex  w-[64%] items-center justify-between">
           <div className="w-fit flex gap-[1vw]">
-            <address className="flex w-fit items-center gap-[1vw] not-italic">
+            <address className="flex w-fit items-center gap-[.5vw] not-italic">
               <div className="p-[.8vw] w-[2vw] h-[2vw] flex items-center justify-center aspect-square flex-shrink-0 bg-white/5 rounded-full">
                 <span className="text-[1vw] leading-[1.1] font-medium font-robert">
                   M
@@ -134,8 +134,18 @@ export default function Footer() {
                 relatshq@relats.com
               </a>
             </address>
-            {/* Only one address, removed duplicate */}
+            <address className="flex w-fit items-center gap-[.5vw] not-italic">
+              <div className="p-[.8vw] w-[2vw] h-[2vw] flex items-center justify-center aspect-square flex-shrink-0 bg-white/5 rounded-full">
+                <span className="text-[1vw] leading-[1.1] font-medium font-robert">
+                  T
+                </span>
+              </div>
+              <a href="tel:+34938627510" className="opacity-30 hover:opacity-100">
+                +34 93 862 7510
+              </a>
+            </address>
           </div>
+            
           <p className="text-[.85vw] w-fit leading-[1.1] font-medium font-DMMono">
             RELATS © 2025
           </p>

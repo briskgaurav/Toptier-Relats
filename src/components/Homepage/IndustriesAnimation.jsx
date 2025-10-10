@@ -22,16 +22,22 @@ export default function IndustriesAnimation({ activeIndustry, setActiveIndustry,
         
         const headingBoxes = document.querySelectorAll(".headingBox");
         const imageBoxes = document.querySelectorAll(".image-boxes");
+        const parallexImages = document.querySelectorAll(".parallex-image");
         const subInfoContainers = document.querySelectorAll(".subInfoContainer");
 
         // Initial setup
         gsap.set(headingBoxes, { yPercent: 0, force3D: true });
         imageBoxes.forEach((box, idx) => {
             gsap.set(box, {
-                clipPath: idx === 0 ? "inset(0% 0% 0% 0%)" : "inset(100% 0% 0% 0% round 0vw)",
+                clipPath: idx === 0 ? "inset(0% 0% 0% 0%)" : "inset(100% 0% 0%  round 0vw)",
                 width:'103%',
                 xPercent:-1,
                 force3D: true
+            });
+        });
+        parallexImages.forEach((image, idx) => {
+            gsap.set(image, {
+               y:50,
             });
         });
 
@@ -87,7 +93,8 @@ export default function IndustriesAnimation({ activeIndustry, setActiveIndustry,
                     end: end,
                     scrub: true,
                 },
-            }).to(imageBoxes[toIdx+1], { clipPath: "inset(0% 0% 0% 0% round 1.5vw)", xPercent:0,width:'100%', ease: 'linear', force3D: true });
+            }).to(imageBoxes[toIdx+1], { clipPath: "inset(0% 0% 0% round 1.5vw)", xPercent:0,width:'100%', ease: 'linear', force3D: true })
+            .to(parallexImages, {  y:0, ease: 'none', force3D: true },"<");
         }
 
     // eslint-disable-next-line
@@ -114,12 +121,12 @@ export default function IndustriesAnimation({ activeIndustry, setActiveIndustry,
                             </p>
                         ))}
                     </div>
-                    <div className="capitalize flex items-center justify-between w-full">
+                    <div className="capitalize px-[.5vw] flex items-center justify-between w-full">
                         {industries.map((item, idx) => (
                             <p
                                 key={item.name}
                                 onClick={() => handleIndustryClick(item.name, idx)}
-                                className={`font-DMMono cursor-pointer text-[.75vw] leading-[1.1] font-medium duration-300 transition-opacity uppercase ${
+                                className={`font-DMMono cursor-pointer text-[.68vw] leading-[1.1] font-medium duration-300 transition-opacity uppercase ${
                                     activeIndustry === item.name ? "opacity-100" : "opacity-40"
                                 }`}
                             >
@@ -157,7 +164,7 @@ export default function IndustriesAnimation({ activeIndustry, setActiveIndustry,
                                 alt={industry.name}
                                 height={500}
                                 width={500}
-                                className="h-full w-full object-cover"
+                                className="h-full parallex-image w-full object-cover"
                             />
                         </div>
                     ))}
