@@ -412,8 +412,8 @@ export default function MorePerflix() {
     // 1. When entering flamability, do animation as before
     const FlamibilityTrigger = ScrollTrigger.create({
       trigger: "#flamability",
-      start: "25% 0%",
-      end: "73%",
+      start: "2% 0%",
+      end: "48%",
       markers: false,
       onEnter: () => showAnim('flamability'),
       onEnterBack: () => showAnim('flamability'),
@@ -423,19 +423,19 @@ export default function MorePerflix() {
 
     const WSX45Trigger = ScrollTrigger.create({
       trigger: "#flamability",
-      start: "73% 0%",
-      end: "93%",
+      start: "48% 0%",
+      end: "64.7%",
       markers: false,
       onEnter: () => setStateInstant('wsx45'),
       onEnterBack: () => setStateInstant('wsx45'),
       onLeave: () => setStateInstant('vsc25'),
-      onLeaveBack: () => setStateInstant('wsx45'),
+      onLeaveBack: () => setStateInstant('flamability'),
     });
 
     const VSC25Trigger = ScrollTrigger.create({
       trigger: "#flamability",
-      start: "93% center",
-      end: "93% center",
+      start: "64.7% top",
+      end: "84% center",
       markers: false,
       onEnter: () => setStateInstant('vsc25'),
       onEnterBack: () => setStateInstant('vsc25'),
@@ -445,8 +445,8 @@ export default function MorePerflix() {
 
     const VSCTFTrigger = ScrollTrigger.create({
       trigger: "#flamability",
-      start: "107% top",
-      end: "120%",
+      start: "84% center",
+      end: "90%",
       markers: false,
       onEnter: () => setStateInstant('vsctf'),
       onEnterBack: () => setStateInstant('vsctf'),
@@ -456,42 +456,42 @@ export default function MorePerflix() {
 
     const SelfClosingTrigger = ScrollTrigger.create({
       trigger: "#self-closing",
-      start: "55% 0%",
-      end: "110%",
+      start: "25% 0%",
+      end: "100%",
       markers: false,
       onEnter: () => showAnim('self-closing'),
       onEnterBack: () => showAnim('self-closing'),
       onLeave: () => offAnim('self-closing'),
       onLeaveBack: () => offAnim('self-closing'),
     })
-    const productionTrigger = ScrollTrigger.create({
-      trigger: "#production",
-      start: "40% 0%",
-      end: "bottom",
-      markers: false,
-      onEnter: () => offAnim('production'),
-      onEnterBack: () => showAnim('self-closing'),
-    })
+    // const productionTrigger = ScrollTrigger.create({
+    //   trigger: "#production",
+    //   start: "40% 0%",
+    //   end: "bottom",
+    //   markers: true,
+    //   onEnter: () => offAnim('production'),
+    //   onEnterBack: () => showAnim('self-closing'),
+    // })
     const periflex = ScrollTrigger.create({
       trigger: "#periflex",
-      start: "15% 0%",
-      end: "58%",
+      start: "0% 0%",
+      end: "30%",
       markers: false,
       onEnter: () => showAnim('flamability'),
       onEnterBack: () => showAnim('flamability'),
       onLeave: () => offAnim('flamability'),
       onLeaveBack: () => offAnim('flamability'),
     });
-    const periflex2 = ScrollTrigger.create({
-      trigger: "#periflex",
-      start: "58% 0%",
-      end: "65%",
-      markers: false,
-      onEnter: () => showAnim('perflex-duhura'),
-      onEnterBack: () => showAnim('perflex-duhura'),
-      onLeave: () => offAnim('perflex-duhura'),
-      onLeaveBack: () => offAnim('perflex-duhura'),
-    });
+    // const periflex2 = ScrollTrigger.create({
+    //   trigger: "#periflex",
+    //   start: "58% 0%",
+    //   end: "65%",
+    //   markers: false,
+    //   onEnter: () => showAnim('perflex-duhura'),
+    //   onEnterBack: () => showAnim('perflex-duhura'),
+    //   onLeave: () => offAnim('perflex-duhura'),
+    //   onLeaveBack: () => offAnim('perflex-duhura'),
+    // });
 
     return () => {
       if (tlRef.current) tlRef.current.kill()
