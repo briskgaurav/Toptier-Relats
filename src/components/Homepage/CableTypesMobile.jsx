@@ -14,14 +14,14 @@ const cardData = [
   {
     key: "card-0",
     cardProps: {
-        contentClassName: "max-sm:text-[5vw] text-[3vw] w-full",
+        contentClassName: "max-sm:text-[7vw] mt-[7vw] text-[3vw] w-full",
     },
     positionClassName: "left-[-10%] w-[80%] max-sm:top-[10%] max-md:top-[15%] max-md:-translate-x-[25%] max-sm:-translate-x-0 -translate-y-1/2 absolute",
   },
   {
     key: "card-1",
     cardProps: {
-      contentClassName: "max-sm:text-[5vw] w-full",
+      contentClassName: "max-sm:text-[3.6vw] mt-[7vw] w-full",
       content: "FMVSS 302 Self-extinguishing UL94 V1 (Ø 18 mm)",
     },
     positionClassName: "max-sm:left-[75%] max-md:left-[90%] w-[80%] top-[45%] -translate-x-1/2 -translate-y-1/2 absolute",
@@ -29,9 +29,9 @@ const cardData = [
   {
     key: "card-2",
     cardProps: {
-      contentClassName: "max-sm:text-[5vw] w-full",
+      contentClassName: "max-sm:text-[3.6vw] mt-[7vw] w-full",
       heading: "Thermal Runway",
-      content: "+1000ºC x 5 mins ≥ 5kV (TE) +1000ºC x 15 mins ≥ 2kV (DFT) +850ºC x 30 mins ≥ 2kV (DFT)",
+      content: "+850ºC x 30 mins ≥ 2kV (DFT) (Thermal Exposure)",
     },
     positionClassName: "max-sm:left-[30%]  max-md:left-[10%] w-[80%] top-[60%] -translate-x-1/2 -translate-y-1/2 absolute",
   },
@@ -124,11 +124,11 @@ export default function CableTypesMobile({ type, setType, handleScrollToCable })
               Revitex VSCTF
             </p>
           </div>
-          <div className="flex items-center  w-full justify-center gap-[1vw]">
+          <div className="flex items-center  w-full justify-center max-md:gap-[2vw] gap-[1vw]">
             <p className="text-[.8vw] max-sm:text-[2.5vw] max-md:text-[1.5vw] mt-[1vw] text-center leading-[1.1] font-medium font-DMMono uppercase">
               Available in{" "}
             </p>
-            <span className="w-[.8vw] h-[.8vw] bg-orange rounded-full"></span>
+            <span className="max-md:w-[2vw] max-md:h-[2vw] w-[.8vw] h-[.8vw] bg-orange rounded-full"></span>
           </div>
         </div>
         <div className="w-full relative h-full">

@@ -68,12 +68,12 @@ export default function TruckMobile() {
         />
         <div className="w-full h-full flex absolute inset-0 z-[1]">
           <div className="h-full px-[3vw] flex-col flex items-center justify-center relativepy-[4vw] w-[50%]">
-            <h2 className="max-sm:text-[11.5vw] text-[5vw] absolute top-[15vw] left-[3vw] leading-none max-sm:w-[90%] w-[40%]">
+            <h2 className="max-sm:text-[11.5vw] text-[5vw] absolute top-[15vw] left-[3vw] leading-none max-sm:w-[90%] w-[40%] max-sm:tracking-tight">
               Where power meets protection
             </h2>
           </div>
           <div className="h-full relative px-[3vw] py-[1.5vw] w-[100%]">
-            <h2 className="max-sm:text-[11.5vw] text-[5vw] leading-none absolute text-right right-[3vw] bottom-[15vw] max-sm:w-[100%] w-[50%] ">
+            <h2 className="max-sm:text-[11.5vw] text-[5vw] leading-none absolute text-right right-[3vw] max-sm:tracking-tight bottom-[15vw] max-sm:w-[100%] w-[50%] ">
               Discover what's inside
             </h2>
            
@@ -81,7 +81,7 @@ export default function TruckMobile() {
         </div>
       </div>
     </section>
-    <section className="h-fit py-[10vw] max-sm:py-[5vw] text-blackshade bg-[#e3e1e0] w-full hidden max-md:block">
+    <section className="h-fit py-[10vw] max-sm:py-[10vw] max-sm:pb-[15vw] text-blackshade bg-[#e3e1e0] w-full hidden max-md:block">
             <div className="h-[100%] max-sm:h-[90%] flex flex-col justify-center w-full max-sm:space-y-[8vw] space-y-[3vw] px-[6vw] pt-[7vw] ">
               <p className="font-DMMono cursor-pointer max-sm:text-[3vw] text-[1.5vw] leading-[1.1] font-medium uppercase">Top tier solutions for:</p>
               <div className="space-y-[5vw] h-fit ">

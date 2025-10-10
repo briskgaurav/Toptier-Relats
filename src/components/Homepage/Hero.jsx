@@ -4,12 +4,14 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { splitTextByChars } from "@/Animation/GsapAnimation";
 import MorePerflix from "../Floating/MorePerflix";
+import { UseFadeUp } from "@/Utils/Animation";
 gsap.registerPlugin(ScrollTrigger);
 
 
 export default function Hero() {
   const headingRef = useRef(null);
   const containerRef = useRef(null);
+  UseFadeUp()
 
 
 

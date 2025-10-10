@@ -23,7 +23,7 @@ export default function PeriflexMobile() {
             <section
                 id="periflex"
                 ref={containerRef}
-                className="w-full max-md:block hidden relative h-screen overflow-x-hidden"
+                className="w-full max-md:block  hidden relative h-screen overflow-x-hidden"
             >
                 <div className="w-full h-screen overflow-hidden sticky top-0">
                     <video
@@ -39,19 +39,19 @@ export default function PeriflexMobile() {
                     />
                     <div
                         ref={periflexContainerRef}
-                        className="w-full h-screen flex flex-col-reverse absolute inset-0  z-[2] periflex-container"
+                        className="w-full h-screen flex flex-col-reverse absolute inset-0  py-[7vw] z-[2] periflex-container"
                     >
                         <div className="w-[80%]  flex-col h-fit gap-[1vw] flex items-start pl-[7%] pb-[8.5%] justify-end ">
                             <h2 className="max-sm:text-[15vw] text-[8vw] leading-none font-medium text-white">Periflex <br /> DURA HA</h2>
 
                         </div>
-                        <div className="w-[30%] max-sm:w-[50%]  h-full relative">
-                            <Cards contentClassName="max-sm:text-[5vw] max-md:text-[3vw] max-sm:w-[70%] w-[100%]"
+                        <div className="w-[30%] max-sm:w-[50%] max-sm:mb-[5vw]  h-full relative">
+                            <Cards svgColor="text-white" contentClassName="max-sm:text-[5vw] max-md:text-[3vw] max-sm:w-[70%] w-[100%]"
                                 heading="Mechanical Production"
                                 content="ISO 6722-1 (100.000 - 199.999 cycles)" 
                                 headingClassName="max-md:text-[2vw] w-full"
-                                positionClassName="right-[0%] w-[50%] max-sm:top-[80%] top-[85%] max-sm:translate-x-[85%] translate-x-[220%] -translate-y-1/2 absolute" />
-                            <Cards contentClassName="max-sm:text-[8vw] text-[5vw] w-[80%]"
+                                positionClassName="right-[0%] w-[50%] max-sm:top-[80%] top-[80%] max-sm:translate-x-[85%] translate-x-[220%] -translate-y-[40%] absolute" />
+                            <Cards svgColor="text-white" contentClassName="max-sm:text-[8vw] text-[5vw] w-[80%]"
                                 heading="Operating temperature"
                                 headingClassName="max-sm:text-[2vw] w-full"
                                 content="-70ºC to +125ºC" 
@@ -69,7 +69,7 @@ export default function PeriflexMobile() {
             <div className="w-full mt-[8vw] max-sm:h-[70vh] max-md:h-[110vh]">
                 <Swiper
                     spaceBetween={10}
-                    slidesPerView={1.1}
+                    slidesPerView={1.15}
                     className="h-full"
                     centeredSlides={true}
                     pagination={{ clickable: false }}

@@ -72,7 +72,7 @@ export default function Production() {
         ease: "power1.inOut",
         duration: 0.2,
       },
-      "<+.2"
+      "<+.4"
     );
     tl.to(
       obj,

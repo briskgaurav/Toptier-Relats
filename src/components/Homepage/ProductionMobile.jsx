@@ -5,49 +5,47 @@ import React, { useRef, useEffect, useState } from "react";
 export default function ProductionMobile() {
   const [counter, setCounter] = useState(0);
   const sectionRef = useRef(null);
-  const hasAnimated = useRef(false);
 
   // Split counter into 3 digits, always padded to 3
   const digits = String(counter).padStart(3, "0").split("");
 
   useEffect(() => {
+    let ticking = false;
+
+    function clamp(val, min, max) {
+      return Math.max(min, Math.min(max, val));
+    }
+
     const handleScroll = () => {
       if (!sectionRef.current) return;
 
-      const section = sectionRef.current;
-      const rect = section.getBoundingClientRect();
-      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+      if (ticking) return;
+      ticking = true;
 
-      // Trigger animation when section enters viewport, only once
-      if (
-        !hasAnimated.current &&
-        rect.top < windowHeight &&
-        rect.bottom > 0
-      ) {
-        hasAnimated.current = true;
-        // Animate counter from 0 to 500 quickly (no scrub)
-        let start = 0;
-        const end = 500;
-        const duration = 700; // ms
-        const startTime = performance.now();
+      window.requestAnimationFrame(() => {
+        const section = sectionRef.current;
+        const rect = section.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
 
-        function animate(now) {
-          const elapsed = now - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const value = Math.round(start + (end - start) * progress);
-          setCounter(value);
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          } else {
-            setCounter(end);
-          }
+        // Only trigger the counter when the section is at least partially in view
+        if (rect.bottom > 0 && rect.top < windowHeight) {
+          // How far through the section has the viewport traveled?
+          // Progress: 0 when top of section at bottom of viewport,
+          //           1 when bottom of section at top of viewport
+          // We'll cap ["-20%" visible to "80%" viewport] as scroll range for animation
+          const sectionHeight = rect.height;
+          const scrollStart = windowHeight - sectionHeight * 0.2;
+          const scrollEnd = 0 + sectionHeight * 0.8;
+          const rawProgress = (scrollStart - rect.top) / (scrollStart - scrollEnd);
+          const progress = clamp(rawProgress, 0, 1);
+
+          // Animate from 0 to 500 according to scroll
+          setCounter(Math.round(progress * 500));
+        } else {
+          setCounter(0);
         }
-        requestAnimationFrame(animate);
-      } else if (rect.top >= windowHeight) {
-        // Reset if scrolled above
-        hasAnimated.current = false;
-        setCounter(0);
-      }
+        ticking = false;
+      });
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });

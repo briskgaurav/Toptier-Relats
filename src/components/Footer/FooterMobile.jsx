@@ -56,9 +56,8 @@ export default function FooterMobile() {
       <section
         ref={containerRef}
         id="footer"
-        className="h-screen  max-md:block hidden overflow-x-hidden relative w-full  "
+        className="h-screen  bg-[#1D1D1D]  max-md:block hidden relative w-full  "
       >
-        <div className="h-screen bg-[#1D1D1D] overflow-hidden w-full sticky top-0">
           <video
             ref={videoRef}
             src="https://toptier.relats.com/wp-content/themes/relats/videos/jointheride/cable.mp4"
@@ -74,7 +73,7 @@ export default function FooterMobile() {
             >
               Join the ride
             </h2>
-            <div className="flex flex-col items-center gap-[4vw] w-full mt-[4vw]">
+            <div className="flex flex-col items-center gap-[4vw] max-sm:gap-[8vw] w-full mt-[4vw]">
               <button className="w-fit px-[7vw] py-[3.5vw] hover:bg-orange-500 bg-white text-black rounded-[4vw] text-[2.5vw] max-sm:text-[3.5vw] leading-[1.1] font-medium font-robert">
                 Browse Catalog
               </button>
@@ -100,13 +99,13 @@ export default function FooterMobile() {
               </div>
             </div>
           </div>
-        </div>
+       
       </section>
       <section
         className="bg-[#1D1D1D] mt-[-.5vw] hidden max-md:flex flex-col items-center w-full  justify-between px-[2vw] py-[1vw]"
         id="footer-navigations"
       >
-        <Link href="/" className="max-sm:w-[30vw] w-[20vw] pl-[1vw] py-[1vw] mb-[7vw] h-fit block hover:opacity-100">
+        <Link href="/" className="max-sm:w-[30vw] max-sm:translate-x-[-105%] w-[20vw] pl-[1vw] py-[1vw] mb-[7vw] h-fit block hover:opacity-100">
           <LogoSVG />
         </Link>
         <div className="flex flex-col w-full items-center justify-center gap-[4vw] mt-[4vw]">

@@ -124,7 +124,7 @@ export default function Footer() {
         </Link>
         <div className="flex  w-[64%] items-center justify-between">
           <div className="w-fit flex gap-[1vw]">
-            <address className="flex w-fit items-center gap-[.5vw] not-italic">
+            <address className="flex w-fit items-center gap-[1vw] not-italic">
               <div className="p-[.8vw] w-[2vw] h-[2vw] flex items-center justify-center aspect-square flex-shrink-0 bg-white/5 rounded-full">
                 <span className="text-[1vw] leading-[1.1] font-medium font-robert">
                   M
@@ -134,7 +134,7 @@ export default function Footer() {
                 relatshq@relats.com
               </a>
             </address>
-            <address className="flex w-fit items-center gap-[.5vw] not-italic">
+            <address className="flex w-fit items-center gap-[1vw] not-italic">
               <div className="p-[.8vw] w-[2vw] h-[2vw] flex items-center justify-center aspect-square flex-shrink-0 bg-white/5 rounded-full">
                 <span className="text-[1vw] leading-[1.1] font-medium font-robert">
                   T

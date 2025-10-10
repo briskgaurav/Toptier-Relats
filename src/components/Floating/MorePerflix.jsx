@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
+import { useLenis } from 'lenis/react';
 
 const states = [
   {
@@ -79,7 +80,7 @@ function Dialog({ open, onClose, currentState }) {
   const dialogBgRef = useRef(null)
   const dialogBoxRef = useRef(null)
   const [shouldRender, setShouldRender] = useState(open)
-
+ 
   // Animate in/out when open changes
   useEffect(() => {
     if (open) {
@@ -130,12 +131,12 @@ function Dialog({ open, onClose, currentState }) {
     >
       <div
         ref={dialogBoxRef}
-        className="bg-white flex rounded-[3vw]  w-[98vw] h-[95vh] relative"
+        className="bg-white  flex rounded-[3vw]  w-[98vw] h-[95vh] relative"
         onClick={e => e.stopPropagation()}
         tabIndex={-1}
       >
         <div
-          className="absolute top-[2vw] right-[3vw] p-[1.5vw] bg-black/5 rounded-full w-[2vw] z-[10] h-[2vw] flex items-center justify-center text-black text-2xl font-bold hover:text-gray-600 cursor-pointer"
+          className="absolute top-[2vw] right-[3vw] p-[1.5vw] bg-black/5 rounded-full w-[2vw] z-[10] h-[2vw] flex items-center justify-center text-black text-2xl font-bold hover:opacity-40 duration-300 transition-all cursor-pointer"
           onClick={onClose}
           role="button"
           tabIndex={0}
@@ -296,6 +297,7 @@ function Dialog({ open, onClose, currentState }) {
 }
 
 export default function MorePerflix() {
+  const lenis = useLenis()
   const containerRef = useRef(null)
   const imageWrapperRef = useRef(null)
   const textRef = useRef(null)
@@ -508,11 +510,13 @@ export default function MorePerflix() {
   // Handler for opening the dialog
   const handleOpenDialog = (e) => {
     e.stopPropagation()
+    lenis.stop()
     setDialogOpen(true)
   }
 
   // Handler for closing the dialog
   const handleCloseDialog = (e) => {
+    lenis.start()
     if (e) e.stopPropagation()
     setDialogOpen(false)
   }
@@ -530,7 +534,7 @@ export default function MorePerflix() {
         className="group fixed z-[50] max-lg:hidden origin-center bottom-[2.5vw] left-1/2 -translate-x-1/2"
       >
         <div
-          className="flex items-center bg-white/20 group-hover:bg-white/30 transition-all duration-500 cursor-pointer backdrop-blur-[10px] p-[.2vw] gap-[1vw] rounded-[1.2vw]"
+          className="flex items-center bg-white/20  group-hover:bg-white/30 transition-all duration-500 cursor-pointer backdrop-blur-[10px] p-[.2vw] gap-[1vw] rounded-[1.2vw]"
           onClick={handleOpenDialog}
           tabIndex={0}
           role="button"

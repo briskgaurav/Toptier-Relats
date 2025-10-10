@@ -12,7 +12,7 @@ export default function Commitment() {
     >
       <div
         className="
-          w-[58%] h-full overflow-hidden rounded-[1.5vw]
+          w-[58%] fadeup h-full overflow-hidden rounded-[1.5vw]
           max-md:w-full max-md:h-full max-md:rounded-[4vw]
         "
       >
@@ -27,13 +27,13 @@ export default function Commitment() {
       </div>
       <div
         className="
-          w-[42%] bg-white max-md:justify-evenly p-[3.5vw] flex flex-col items-start justify-between h-full rounded-[1.5vw]
+          w-[42%] fadeup bg-white max-md:justify-evenly p-[3.5vw] flex flex-col items-start justify-between h-full rounded-[1.5vw]
           max-md:w-full max-md:rounded-[4vw] max-md:p-[4vw] max-md:py-[10vw] max-md:h-full
         "
       >
         <div
           className="
-            w-fit h-fit px-[.5vw] bg-[#42EC8B] py-[.2vw] flex items-center justify-center rounded-full
+            w-fit h-fit px-[.5vw] bg-[#42EC8B] py-[.2vw] max-sm:translate-y-[-150%] flex items-center justify-center rounded-full
             max-md:px-[2vw]  max-md:py-[1vw] max-md:rounded-[2vw]
           "
         >
@@ -47,7 +47,7 @@ export default function Commitment() {
             <br className="" />
             Commitment
           </h2>
-          <p className="text-blackshade max-sm:text-[3.8vw] max-md:text-[3vw]">
+          <p className="text-blackshade max-sm:text-[3.8vw] max-sm:mb-[10vw] max-md:text-[3vw]">
             When you see our sustainable certificate, you can rest assured that the product in your hands meets the highest standard of sustainability.
           </p>
           <Link
