@@ -140,7 +140,7 @@ export default function CableTypes({ type, setType, handleScrollToCable }) {
           <AnimatePresence mode="wait">
             {cardData.map((card, i) => (
               <motion.div
-                className={`card-wrapper ${card.positionClassName || ""}`}
+                className={`card-wrapper bg-black/5 backdrop-blur-[10px] h-[15vw] rounded-[1.5vw] !w-[15vw] ${card.positionClassName || ""}`}
                 key={card.key + type}
                 custom={i}
                 variants={cardVariants}
@@ -148,7 +148,7 @@ export default function CableTypes({ type, setType, handleScrollToCable }) {
                 animate="animate"
                 exit="exit"
               >
-                <Cards {...card.cardProps} />
+                <Cards backdropEnabled={false} {...card.cardProps} />
               </motion.div>
             ))}
           </AnimatePresence>

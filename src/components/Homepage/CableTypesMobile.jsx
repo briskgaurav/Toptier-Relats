@@ -135,7 +135,7 @@ export default function CableTypesMobile({ type, setType, handleScrollToCable })
           <AnimatePresence mode="wait">
             {cardData.map((card, i) => (
               <motion.div
-                className={`card-wrapper ${card.positionClassName || ""}`}
+                className={`card-wrapper bg-black/5 !backdrop-blur-[10px] ${card.positionClassName || ""}`}
                 key={card.key + type}
                 custom={i}
                 variants={cardVariants}

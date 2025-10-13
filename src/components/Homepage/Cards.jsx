@@ -27,6 +27,7 @@ export function TemperatureSVG(props) {
 }
 
 export default function Cards({
+  backdropEnabled = true,
   heading = 'Operating temperature',
   content = '-70ºC to +210ºC',
   imageSrc = '/assets/img/revitex/icons/temperature.svg',
@@ -57,9 +58,8 @@ export default function Cards({
     <div
       className={`
         ${positionClassName}
-        w-fit h-fit text-white bg-black/10
+      text-white ${backdropEnabled ? 'bg-black/10 h-fit w-fit backdrop-blur-[10px]' : 'w-full h-full'}
         p-[2vw] max-md:p-[4vw]
-        backdrop-blur-[10px]
         rounded-[1.5vw] max-md:rounded-[3vw]
         max-w-[14vw] max-md:max-w-[80vw]
         flex flex-col
