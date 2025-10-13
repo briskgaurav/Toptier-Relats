@@ -101,7 +101,7 @@ export default function WorldWide() {
   }, []);
 
   return (
-    <section className="w-full relative overflow-x-hidden max-sm:overflow-visible h-[110vh] px-[3vw] py-[5vw] flex max-md:flex-col max-md:py-[10vw] bg-[#1D1D1D]">
+    <section className="w-full relative overflow-hidden h-[110vh] px-[3vw] py-[5vw] flex max-md:flex-col max-md:py-[10vw] bg-[#1D1D1D]">
       <div className="w-1/2 max-md:w-full flex flex-col max-md:items-center max-md:justify-start items-start justify-between space-y-[2vw] h-full ">
         <div className="max-md:w-full max-md:flex max-md:justify-center max-md:items-center max-md:flex-col max-md:space-y-[5vw]">
           <h2 className="heading2 max-sm:!text-[10vw] max-md:text-[5vw] max-md:text-center max-md:w-[60%] w-[50%`]">
@@ -156,7 +156,7 @@ export default function WorldWide() {
         {stats.map((stat, idx) => (
           <div
             key={idx}
-            className="flex flex-col items-center justify-between min-w-[30vw] h-fit gap-[2vw] bg-white/15 backdrop-blur-[10px] rounded-[4vw] max-sm:p-[6vw] max-md:p-[3vw] p-[6vw] max-md:h-[18vh] max-sm:h-[20vh] max-sm:w-[45%] max-md:w-[24%] max-md:min-w-[23%] max-sm:min-w-[30vw]"
+            className="flex flex-col items-center justify-between min-w-[30vw] h-fit gap-[2vw] bg-white/15 backdrop-blur-[10px] rounded-[4vw] max-sm:p-[6vw] max-md:p-[3vw] p-[6vw] max-md:h-[18vh] max-sm:h-[17vh] max-sm:w-[45%] max-md:w-[24%] max-md:min-w-[23%] max-sm:min-w-[30vw]"
           >
             <p className=" max-md:text-left text-white opacity-80 max-sm:text-[3vw] max-md:text-[2vw] text-[3vw] leading-[1.1] w-full">
               {stat.label}

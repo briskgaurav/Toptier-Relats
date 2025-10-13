@@ -28,7 +28,7 @@ export default function Commitment() {
       <div
         className="
           w-[42%] fadeup bg-white max-md:justify-evenly p-[3.5vw] flex flex-col items-start justify-between h-full rounded-[1.5vw]
-          max-md:w-full max-md:rounded-[4vw] max-md:p-[4vw] max-md:py-[10vw] max-md:h-full
+          max-md:w-full max-md:rounded-[4vw] max-md:p-[4vw] max-md:pb-[10vw] max-md:pt-[15vw] max-md:h-fit
         "
       >
         <div

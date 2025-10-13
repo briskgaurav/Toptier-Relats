@@ -75,9 +75,9 @@ export default function Periflex() {
     <section
       id="periflex"
       ref={containerRef}
-      className="w-full max-md:hidden relative h-[1600vh]"
+      className="w-full max-md:hidden relative h-[1600vh] mt-[-100vh]"
     >
-      <div className="w-full h-screen overflow-hidden sticky top-0">
+      <div className="w-full z-[100] h-screen overflow-hidden sticky top-[0%] ">
         <video
           ref={videoRef}
           src={

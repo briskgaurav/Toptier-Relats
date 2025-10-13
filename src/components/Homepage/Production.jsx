@@ -24,7 +24,7 @@ export default function Production() {
       scrollTrigger: {
         trigger: "#production",
         start: "-2% 100%",
-        end: "90% 70%",
+        end: "100% 240%",
         scrub: 1,
         markers: false,
         onUpdate: () => {

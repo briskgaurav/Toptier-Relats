@@ -41,7 +41,7 @@ body {
   @apply text-[12vw] tracking-tighter leading-none font-medium font-robert;
 }
 .heading2 {
-  @apply text-[5.5vw] tracking-tighter leading-[1.2] font-medium font-robert;
+  @apply text-[5.5vw] tracking-tighter leading-[1.2] font-medium ;
 }
 
 .content {

@@ -35,7 +35,7 @@ export default function PeriflexMobile() {
                         muted
                         autoPlay
                         playsInline
-                        loop
+                        
                     />
                     <div
                         ref={periflexContainerRef}
@@ -46,7 +46,7 @@ export default function PeriflexMobile() {
 
                         </div>
                         <div className="w-[30%] max-sm:w-[50%] max-sm:mb-[5vw]  h-full relative">
-                            <Cards svgColor="text-white" contentClassName="max-sm:text-[5vw] max-md:text-[3vw] max-sm:w-[70%] w-[100%]"
+                            <Cards svgColor="text-white" contentClassName="max-sm:text-[5vw] max-md:text-[3vw] max-sm:w-[95%] w-[100%]"
                                 heading="Mechanical Production"
                                 content="ISO 6722-1 (100.000 - 199.999 cycles)" 
                                 headingClassName="max-md:text-[2vw] w-full"
@@ -88,12 +88,12 @@ export default function PeriflexMobile() {
                                 <div className="absolute top-[15vw] flex px-[5vw] left-0  z-[5] h-fit gap-[2vw] w-full">
                                     <p className="max-sm:text-[8vw] text-[5vw] text-center w-full text-white">{industry.name}</p>
                                 </div>
-                                <div className="absolute z-[5] bottom-[5vw] left-1/2 -translate-x-1/2 rounded-xl px-6 py-[4vw] w-[90%] bg-white/20 backdrop-blur-[10px] border border-white/20 gap-[3vw] flex flex-col space-y-[2vw] text-white">
-                                  <div className="w-[4vw] h-[4vw] ">
+                                <div className="absolute z-[5] bottom-[5vw] left-1/2 -translate-x-1/2 rounded-xl px-8 py-[5vw] w-[90%] bg-white/20 backdrop-blur-[10px] border border-white/20 gap-[3vw] flex flex-col space-y-[2vw] text-white">
+                                  <div className="w-[10vw] h-[10vw] ">
                                     <Image src={industry.icon} alt={industry.name} className="w-full h-full object-cover" width={100} height={100} />
 
                                   </div>
-                                  <p className="max-sm:text-[4vw] text-[3.5vw]">{industry.text}</p>
+                                  <p className="max-sm:text-[4.5vw] w-full text-[3.5vw]">{industry.text}</p>
                                     
                                   
                                 </div>

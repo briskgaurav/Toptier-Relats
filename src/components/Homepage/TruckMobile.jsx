@@ -62,7 +62,7 @@ export default function TruckMobile() {
           muted
           playsInline
           autoPlay
-          loop
+          
           className="w-full h-full object-cover"
           src="/assets/videos/truck/truck.mp4"
         />

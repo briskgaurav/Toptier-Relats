@@ -113,7 +113,6 @@ export default function SelfClosingMobile() {
                         muted
                         autoPlay
                         playsInline
-                        loop
                     ></video>
                     <h2 className="heading2 w-[60%] max-sm:text-[13vw] max-sm:scale-140 max-md:scale-80  scale-65 text-center absolute top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 text-white ">
                         We make mobility safer <br /> across all industries
@@ -125,12 +124,12 @@ export default function SelfClosingMobile() {
                     Mobility Industries
                 </p>
                 {/* Swiper for mobile industries cards */}
-                <div className="w-full h-[90%]">
+                <div className="w-full h-[95%]">
                     <Swiper
                         spaceBetween={10}
                         slidesPerView={1.1}
                         className="h-full w-full"
-                       centeredSlides={true}
+                        centeredSlides={true}
                         pagination={{ clickable: false }}
                     >
                         {INDUSTRIES.map((industry, idx) => (
@@ -155,8 +154,8 @@ export default function SelfClosingMobile() {
                                         />
 
                                     </div>
-                                    <div className="absolute top-[5vw] flex px-[5vw] left-0 inset-0 z-[5] h-fit gap-[2vw] w-full">
-                                        <div className="w-[15vw] overflow-hidden rounded-xl h-[15vw] ">
+                                    <div className="absolute top-[5vw] flex px-[5vw] left-0 inset-0 z-[5] h-fit items-center gap-[2vw] w-full">
+                                        <div className="w-[15vw] overflow-hidden border-2 border-white/40 rounded-xl h-[15vw] ">
                                             <video
                                                 src={industry.video}
                                                 className="w-full h-full object-cover"
@@ -166,11 +165,11 @@ export default function SelfClosingMobile() {
                                             />
 
                                         </div>
-                                        <p className="text-[5vw]  text-white">Construction machines</p>
+                                        <p className="text-[5vw]  text-white uppercase leading-[1.1]">Construction machines</p>
 
                                     </div>
                                     <div className="absolute z-[5] bottom-[5vw] left-1/2 -translate-x-1/2 rounded-xl px-6 py-3 w-[90%]  bg-white/20 backdrop-blur-[10px] border border-white/20 space-y-[2vw] text-white">
-                                        <h3 className="text-[10vw] w-full uppercase font-medium ">
+                                        <h3 className="text-[10vw] leading-[1.1] w-full uppercase font-medium ">
                                             {industry.data.name}
                                         </h3>
                                         <div className="flex items-center gap-2 ">
@@ -180,14 +179,14 @@ export default function SelfClosingMobile() {
                                                 className="w-4 h-4"
                                             />
                                             <span className="text-[2vw] uppercase">
-                                               Operating temperature
+                                                Operating temperature
                                             </span>
                                         </div>
                                         <div className="w-full space-y-[1vw]">
                                             <p className="font-DMMono text-[3vw] uppercase">Abrasion resistance</p>
                                             <div className="bg-white rounded-full px-3 py-1 text-blackshade">
 
-                                            <p className="text-[2.2vw] font-DMMono uppercase w-full">{industry.data.abrasion} ({industry.data.abrasionStandard})</p>
+                                                <p className="text-[2.2vw] font-DMMono uppercase w-full">{industry.data.abrasion} ({industry.data.abrasionStandard})</p>
                                             </div>
                                         </div>
                                         <div className="w-full flex items-center gap-2 space-y-[1vw]">
@@ -198,7 +197,7 @@ export default function SelfClosingMobile() {
                                                 ))}
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </SwiperSlide>

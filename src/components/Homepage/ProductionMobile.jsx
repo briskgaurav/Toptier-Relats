@@ -1,63 +1,54 @@
 "use client";
 import Image from "next/image";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useLayoutEffect, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ProductionMobile() {
   const [counter, setCounter] = useState(0);
   const sectionRef = useRef(null);
+  const counterRef = useRef({ value: 0 });
 
   // Split counter into 3 digits, always padded to 3
   const digits = String(counter).padStart(3, "0").split("");
 
-  useEffect(() => {
-    let ticking = false;
+  useLayoutEffect(() => {
+    if (!sectionRef.current) return;
 
-    function clamp(val, min, max) {
-      return Math.max(min, Math.min(max, val));
-    }
-
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-
-      if (ticking) return;
-      ticking = true;
-
-      window.requestAnimationFrame(() => {
-        const section = sectionRef.current;
-        const rect = section.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-
-        // Only trigger the counter when the section is at least partially in view
-        if (rect.bottom > 0 && rect.top < windowHeight) {
-          // How far through the section has the viewport traveled?
-          // Progress: 0 when top of section at bottom of viewport,
-          //           1 when bottom of section at top of viewport
-          // We'll cap ["-20%" visible to "80%" viewport] as scroll range for animation
-          const sectionHeight = rect.height;
-          const scrollStart = windowHeight - sectionHeight * 0.2;
-          const scrollEnd = 0 + sectionHeight * 0.8;
-          const rawProgress = (scrollStart - rect.top) / (scrollStart - scrollEnd);
-          const progress = clamp(rawProgress, 0, 1);
-
-          // Animate from 0 to 500 according to scroll
-          setCounter(Math.round(progress * 500));
-        } else {
-          setCounter(0);
-        }
-        ticking = false;
+    // GSAP timeline for counter animation on scroll, scrub enabled
+    let ctx = gsap.context(() => {
+      let tween = gsap.to(counterRef.current, {
+        value: 500,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 80%", // when top of section hits 80% of viewport
+          end: "top 0%",    // when top of section hits top of viewport
+          scrub: true,
+        },
+        onUpdate: () => {
+          setCounter(Math.round(counterRef.current.value));
+        },
       });
-    };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    window.addEventListener("resize", handleScroll);
+      // Reset counter when leaving (optional, comment out to hold at 500)
+      ScrollTrigger.create({
+        trigger: sectionRef.current,
+        start: "top 80%",
+        end: "top 0%",
+        onLeaveBack: () => setCounter(0),
+      });
 
-    // Initial call in case already in view
-    handleScroll();
+      return () => {
+        tween.kill();
+        ScrollTrigger.getAll().forEach(st => st.kill());
+      };
+    }, sectionRef);
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      window.removeEventListener("resize", handleScroll);
-    };
+    // Cleanup
+    return () => ctx.revert();
   }, []);
 
   return (

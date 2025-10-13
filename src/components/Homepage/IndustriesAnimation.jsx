@@ -140,7 +140,8 @@ export default function IndustriesAnimation({ activeIndustry, setActiveIndustry,
                         {industriesData.map((item, idx) => (
                             <div key={idx} className='w-fit max-w-[25vw] subInfoContainer h-fit space-y-[2vw] p-[1.4vw]'>
                                 <div className='w-[2.5vw] relative h-[2.5vw] overflow-hidden'>
-                                    <Image src={item.img} alt={item.alt} fill className='w-full h-full object-cover' />
+                                    <Image src={item.img} alt={item.alt} fill className='w-full h-full object-cover' priority 
+                                    />
                                 </div>
                                 <p className='text-[1.2vw]'>{item.text}</p>
                             </div>
@@ -151,6 +152,7 @@ export default function IndustriesAnimation({ activeIndustry, setActiveIndustry,
                             src={"/assets/img/industries/ovens.jpg"}
                             alt="periflex-emi"
                             fill
+                            priority
                             className="h-full w-full rounded-[1.5vw] object-cover"
                         />
                     </div>
@@ -164,6 +166,7 @@ export default function IndustriesAnimation({ activeIndustry, setActiveIndustry,
                                 alt={industry.name}
                                 height={500}
                                 width={500}
+                                priority
                                 className="h-full parallex-image w-full object-cover"
                             />
                         </div>

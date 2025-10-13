@@ -6,14 +6,16 @@ function getAllVideos() {
   return Array.from(document.querySelectorAll('video'));
 }
 
-function waitForVideoLoaded(video, timeout = 4000) {
+function waitForVideoLoaded(video, timeout = 8000) {
   return new Promise((resolve) => {
     let resolved = false;
+    
     // If already loaded
     if (video.readyState >= 3) {
       resolve();
       return;
     }
+    
     const onLoaded = () => {
       if (!resolved) {
         resolved = true;
@@ -22,11 +24,17 @@ function waitForVideoLoaded(video, timeout = 4000) {
         video.removeEventListener('loadeddata', onLoaded);
       }
     };
+    
     video.addEventListener('canplaythrough', onLoaded);
     video.addEventListener('loadeddata', onLoaded);
 
+    // Force load attempt
+    if (video.load) {
+      video.load();
+    }
+
     // Timeout fallback
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       if (!resolved) {
         resolved = true;
         resolve();
@@ -46,13 +54,19 @@ export default function Loader() {
 
   useEffect(() => {
     let isMounted = true
-    let cancelled = false
+    let animationId = null
 
     async function handleAllVideosLoaded() {
+      // Wait a bit for DOM to settle and videos to be added
+      await new Promise(resolve => setTimeout(resolve, 300));
+      
       const videos = getAllVideos();
       const total = videos.length;
+      
+      console.log(`Found ${total} videos to load`);
+      
       if (total === 0) {
-        // No videos, just finish
+        // No videos, just finish quickly
         gsap.to(progressRef.current, {
           current: 100,
           duration: 1,
@@ -60,63 +74,80 @@ export default function Loader() {
           onUpdate: () => {
             if (isMounted) setProgress(Math.round(progressRef.current.current))
           },
-          onComplete: () => setDone(true)
+          onComplete: () => {
+            if (isMounted) setDone(true)
+          }
         });
         return;
       }
 
       let loadedCount = 0;
 
-      // Progressively update as each video loads, but also ensure progress never gets stuck
-      await Promise.all(
-        videos.map((video) =>
-          waitForVideoLoaded(video, 4000).then(() => {
-            loadedCount += 1;
-            // Animate progress to the new value, but never let it get stuck below 100
-            let nextProgress = (loadedCount / total) * 100;
-            // If this is the last video, force 100
-            if (loadedCount === total) nextProgress = 100;
-            gsap.to(progressRef.current, {
-              current: nextProgress,
-              duration: 0.5,
+      // Track each video's load progress
+      const loadPromises = videos.map((video, index) =>
+        waitForVideoLoaded(video, 8000).then(() => {
+          loadedCount += 1;
+          const nextProgress = (loadedCount / total) * 100;
+          
+          // console.log(`Video ${index + 1}/${total} loaded - Progress: ${nextProgress}%`);
+          
+          // Smoothly animate to next progress value
+          if (animationId) {
+            gsap.killTweensOf(progressRef.current);
+          }
+          
+          // If this is the last video, go directly to 100 and mark done
+          if (loadedCount === total) {
+            animationId = gsap.to(progressRef.current, {
+              current: 100,
+              duration: 0.4,
               ease: 'power1.out',
               onUpdate: () => {
-                if (isMounted) setProgress(Math.round(progressRef.current.current))
+                if (isMounted) {
+                  setProgress(Math.round(progressRef.current.current))
+                }
+              },
+              onComplete: () => {
+                if (isMounted) {
+                  console.log('All videos loaded!');
+                  setDone(true)
+                }
               }
             });
-          })
-        )
+          } else {
+            animationId = gsap.to(progressRef.current, {
+              current: nextProgress,
+              duration: 0.3,
+              ease: 'power1.out',
+              onUpdate: () => {
+                if (isMounted) {
+                  setProgress(Math.round(progressRef.current.current))
+                }
+              }
+            });
+          }
+        })
       );
 
-      // Ensure progress is 100% at the end
-      gsap.to(progressRef.current, {
-        current: 100,
-        duration: 0.5,
-        ease: 'power1.out',
-        onUpdate: () => {
-          if (isMounted) setProgress(Math.round(progressRef.current.current))
-        },
-        onComplete: () => setDone(true)
-      });
+      // Wait for all videos to load
+      await Promise.all(loadPromises);
     }
 
-    // Wait for DOMContentLoaded before querying videos
+    // Start loading process
     if (document.readyState === 'loading') {
       const onReady = () => {
         document.removeEventListener('DOMContentLoaded', onReady);
-        if (!cancelled) handleAllVideosLoaded();
+        handleAllVideosLoaded();
       };
       document.addEventListener('DOMContentLoaded', onReady);
-      return () => {
-        isMounted = false;
-        cancelled = true;
-        document.removeEventListener('DOMContentLoaded', onReady);
-      }
     } else {
       handleAllVideosLoaded();
-      return () => {
-        isMounted = false;
-        cancelled = true;
+    }
+
+    return () => {
+      isMounted = false;
+      if (animationId) {
+        gsap.killTweensOf(progressRef.current);
       }
     }
   }, [])
@@ -127,6 +158,7 @@ export default function Loader() {
         y: '-100%',
         duration: 1.5,
         ease: 'power4.inOut',
+        delay: 0.3,
         onComplete: () => {
           if (loaderRef.current) {
             loaderRef.current.style.display = 'none';
@@ -139,7 +171,7 @@ export default function Loader() {
   return (
     <div
       ref={loaderRef}
-      className={`h-screen w-full fixed top-0 left-0 z-[9999] bg-[#EAE4DF] flex items-center justify-center pointer-events-none`}
+      className={`h-screen w-full fixed top-0 left-0 z-[9999] bg-[#EAE4DF] flex items-center justify-center`}
       style={{
         pointerEvents: done ? 'none' : 'auto',
         transition: 'none'
@@ -147,7 +179,7 @@ export default function Loader() {
     >
       <p
         ref={counterRef}
-        className="text-[10vw] leading-[1.1] font-medium text-blackshade/10 font-robert"
+        className="text-[10vw] max-md:text-[30vw] leading-[1.1] font-medium text-blackshade/10 font-robert"
       >
         {progress}%
       </p>
